@@ -18,6 +18,10 @@ def convert_rta():
     df2.to_csv('data/raw/rta/RTA-Changes.csv', index=False)
     print(f"Converted AllRTAs: {len(df)} rows")
 
+def convert_comtrade():
+    df = pd.read_excel('data/raw/comtrade/TradeData-final.xlsx', sheet_name=0)
+    df.to_csv('data/raw/comtrade/TradeData.csv', index=False)
+    print(f"Converted Trade data: {len(df)} rows")
+
 if __name__ == "__main__":
-    convert_cepii()
-    convert_rta()
+    convert_comtrade()

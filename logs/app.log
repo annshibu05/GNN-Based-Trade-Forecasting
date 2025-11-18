@@ -1,0 +1,1186 @@
+2025-11-13 16:47:41 | [32mINFO[0m | test | quickstart.py:34 | ✓ Logging system working
+2025-11-13 16:57:13 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 16:58:21 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 16:58:23 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 16:58:26 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 16:58:28 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 16:58:29 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 16:58:31 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 17:31:27 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 17:33:04 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 17:33:30 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 17:36:19 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 17:36:41 | [32mINFO[0m | test | quickstart.py:35 | ✓ Logging system working
+2025-11-13 23:02:16 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:395 | ============================================================
+2025-11-13 23:02:16 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:396 | STARTING PREPROCESSING PIPELINE
+2025-11-13 23:02:16 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:397 | ============================================================
+2025-11-13 23:02:16 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:39 | Step 1: Loading all data sources...
+2025-11-13 23:02:16 | [32mINFO[0m | src.data.loaders | loaders.py:355 | ============================================================
+2025-11-13 23:02:16 | [32mINFO[0m | src.data.loaders | loaders.py:356 | LOADING ALL DATA SOURCES
+2025-11-13 23:02:16 | [32mINFO[0m | src.data.loaders | loaders.py:357 | ============================================================
+2025-11-13 23:02:16 | [32mINFO[0m | src.data.loaders | loaders.py:30 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData_6_18_2025_13_36_12.csv
+2025-11-13 23:02:17 | [32mINFO[0m | src.data.loaders | loaders.py:39 | Loaded 100,000 raw trade records
+2025-11-13 23:02:17 | [32mINFO[0m | src.data.loaders | loaders.py:40 | Columns: ['typeCode', 'freqCode', 'refPeriodId', 'refYear', 'refMonth', 'period', 'reporterCode', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerCode', 'partnerISO', 'partnerDesc', 'partner2Code', 'partner2ISO', 'partner2Desc', 'classificationCode', 'classificationSearchCode', 'isOriginalClassification', 'cmdCode', 'cmdDesc', 'aggrLevel', 'isLeaf', 'customsCode', 'customsDesc', 'mosCode', 'motCode', 'motDesc', 'qtyUnitCode', 'qtyUnitAbbr', 'qty', 'isQtyEstimated', 'altQtyUnitCode', 'altQtyUnitAbbr', 'altQty', 'isAltQtyEstimated', 'netWgt', 'isNetWgtEstimated', 'grossWgt', 'isGrossWgtEstimated', 'cifvalue', 'fobvalue', 'primaryValue', 'legacyEstimationFlag', 'isReported', 'isAggregate']
+2025-11-13 23:02:17 | [32mINFO[0m | src.data.loaders | loaders.py:61 | Mapping country names to ISO3 codes...
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:68 | After ISO3 mapping: 19,180 records (19.2%)
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:72 | After filtering to Exports: 0 records
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After filtering to Pharma/Textiles: 0 records
+2025-11-13 23:27:39 | [31mERROR[0m | src.data.loaders | loaders.py:364 | Failed to load Comtrade: boolean value of NA is ambiguous
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 362, in load_all
+    data['comtrade'] = self.comtrade_loader.load()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 113, in load
+    df = reduce_memory_usage(df, verbose=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/utils/helpers.py", line 240, in reduce_memory_usage
+    if c_min > np.finfo(np.float32).min and c_max < np.finfo(np.float32).max:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "missing.pyx", line 392, in pandas._libs.missing.NAType.__bool__
+TypeError: boolean value of NA is ambiguous
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:162 | Loading World Bank data...
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank gdp_usd from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv
+2025-11-13 23:27:39 | [31mERROR[0m | src.data.loaders | loaders.py:370 | Failed to load World Bank: [Errno 2] No such file or directory: '/Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv'
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 368, in load_all
+    data['world_bank'] = self.worldbank_loader.load()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 165, in load
+    gdp = self._load_indicator(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 133, in _load_indicator
+    df = pd.read_csv(file_path, skiprows=4)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv'
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:202 | Loading CEPII GeoDist data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/cepii/dist_cepii.csv
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:206 | Loaded 50,176 country pair distances
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:232 | Final CEPII data: 50,176 country pairs
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:246 | Loading WTO RTA data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/rta/AllRTAs.csv
+2025-11-13 23:27:39 | [32mINFO[0m | src.data.loaders | loaders.py:250 | Loaded 649 RTAs
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:296 | Final RTA data: 5,116 FTA country pairs
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:310 | Loading GDELT sentiment from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment.csv
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:314 | Loaded 204,871 sentiment records
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:334 | Final GDELT data: 204,871 sentiment records
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:391 | ============================================================
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:392 | DATA LOADING SUMMARY
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:393 | ============================================================
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:395 | comtrade       :          0 rows
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:395 | world_bank     :          0 rows
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:395 | cepii          :     50,176 rows
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:395 | rtas           :      5,116 rows
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:395 | gdelt          :    204,871 rows
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.loaders | loaders.py:396 | ============================================================
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:53 | Step 2: Merging trade data with features...
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:56 | Starting with 0 trade records
+2025-11-13 23:27:40 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:59 | Merging source country features...
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:395 | ============================================================
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:396 | STARTING PREPROCESSING PIPELINE
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:397 | ============================================================
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:39 | Step 1: Loading all data sources...
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.loaders | loaders.py:355 | ============================================================
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.loaders | loaders.py:356 | LOADING ALL DATA SOURCES
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.loaders | loaders.py:357 | ============================================================
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.loaders | loaders.py:30 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.loaders | loaders.py:39 | Loaded 100,000 raw trade records
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.loaders | loaders.py:40 | Columns: ['typeCode', 'freqCode', 'refPeriodId', 'refYear', 'refMonth', 'period', 'reporterCode', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerCode', 'partnerISO', 'partnerDesc', 'partner2Code', 'partner2ISO', 'partner2Desc', 'classificationCode', 'classificationSearchCode', 'isOriginalClassification', 'cmdCode', 'cmdDesc', 'aggrLevel', 'isLeaf', 'customsCode', 'customsDesc', 'mosCode', 'motCode', 'motDesc', 'qtyUnitCode', 'qtyUnitAbbr', 'qty', 'isQtyEstimated', 'altQtyUnitCode', 'altQtyUnitAbbr', 'altQty', 'isAltQtyEstimated', 'netWgt', 'isNetWgtEstimated', 'grossWgt', 'isGrossWgtEstimated', 'cifvalue', 'fobvalue', 'primaryValue', 'legacyEstimationFlag', 'isReported', 'isAggregate']
+2025-11-14 10:45:34 | [32mINFO[0m | src.data.loaders | loaders.py:61 | Mapping country names to ISO3 codes...
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:68 | After ISO3 mapping: 10,339 records (10.3%)
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:72 | After filtering to Exports: 0 records
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After filtering to Pharma/Textiles: 0 records
+2025-11-14 10:56:40 | [31mERROR[0m | src.data.loaders | loaders.py:364 | Failed to load Comtrade: boolean value of NA is ambiguous
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 362, in load_all
+    data['comtrade'] = self.comtrade_loader.load()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 113, in load
+    df = reduce_memory_usage(df, verbose=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/utils/helpers.py", line 240, in reduce_memory_usage
+    if c_min > np.finfo(np.float32).min and c_max < np.finfo(np.float32).max:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "missing.pyx", line 392, in pandas._libs.missing.NAType.__bool__
+TypeError: boolean value of NA is ambiguous
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:162 | Loading World Bank data...
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank gdp_usd from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 gdp_usd records
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank population from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_SP.POP.TOTL_DS2_en_csv_v2_76034.csv
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 population records
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank inflation_rate from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_FP.CPI.TOTL.ZG_DS2_en_csv_v2_73483.csv
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 inflation_rate records
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:181 | Merging World Bank indicators...
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:188 | Final World Bank data: 17,290 country-year records
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:202 | Loading CEPII GeoDist data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/cepii/dist_cepii.csv
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:206 | Loaded 50,176 country pair distances
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:232 | Final CEPII data: 50,176 country pairs
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:246 | Loading WTO RTA data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/rta/AllRTAs.csv
+2025-11-14 10:56:40 | [32mINFO[0m | src.data.loaders | loaders.py:250 | Loaded 649 RTAs
+2025-11-14 10:56:41 | [32mINFO[0m | src.data.loaders | loaders.py:296 | Final RTA data: 5,116 FTA country pairs
+2025-11-14 10:56:41 | [32mINFO[0m | src.data.loaders | loaders.py:310 | Loading GDELT sentiment from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment.csv
+2025-11-14 10:56:41 | [32mINFO[0m | src.data.loaders | loaders.py:314 | Loaded 204,871 sentiment records
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:334 | Final GDELT data: 204,871 sentiment records
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:391 | ============================================================
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:392 | DATA LOADING SUMMARY
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:393 | ============================================================
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:395 | comtrade       :          0 rows
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:395 | world_bank     :     17,290 rows
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:395 | cepii          :     50,176 rows
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:395 | rtas           :      5,116 rows
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:395 | gdelt          :    204,871 rows
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.loaders | loaders.py:396 | ============================================================
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:53 | Step 2: Merging trade data with features...
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:56 | Starting with 0 trade records
+2025-11-14 10:56:42 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:59 | Merging source country features...
+2025-11-14 11:37:33 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:395 | ============================================================
+2025-11-14 11:37:33 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:396 | STARTING PREPROCESSING PIPELINE
+2025-11-14 11:37:33 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:397 | ============================================================
+2025-11-14 11:37:33 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:39 | Step 1: Loading all data sources...
+2025-11-14 11:37:33 | [32mINFO[0m | src.data.loaders | loaders.py:355 | ============================================================
+2025-11-14 11:37:33 | [32mINFO[0m | src.data.loaders | loaders.py:356 | LOADING ALL DATA SOURCES
+2025-11-14 11:37:33 | [32mINFO[0m | src.data.loaders | loaders.py:357 | ============================================================
+2025-11-14 11:37:33 | [32mINFO[0m | src.data.loaders | loaders.py:30 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-14 11:37:34 | [32mINFO[0m | src.data.loaders | loaders.py:39 | Loaded 100,000 raw trade records
+2025-11-14 11:37:34 | [32mINFO[0m | src.data.loaders | loaders.py:40 | Columns: ['typeCode', 'freqCode', 'refPeriodId', 'refYear', 'refMonth', 'period', 'reporterCode', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerCode', 'partnerISO', 'partnerDesc', 'partner2Code', 'partner2ISO', 'partner2Desc', 'classificationCode', 'classificationSearchCode', 'isOriginalClassification', 'cmdCode', 'cmdDesc', 'aggrLevel', 'isLeaf', 'customsCode', 'customsDesc', 'mosCode', 'motCode', 'motDesc', 'qtyUnitCode', 'qtyUnitAbbr', 'qty', 'isQtyEstimated', 'altQtyUnitCode', 'altQtyUnitAbbr', 'altQty', 'isAltQtyEstimated', 'netWgt', 'isNetWgtEstimated', 'grossWgt', 'isGrossWgtEstimated', 'cifvalue', 'fobvalue', 'primaryValue', 'legacyEstimationFlag', 'isReported', 'isAggregate']
+2025-11-14 11:37:34 | [32mINFO[0m | src.data.loaders | loaders.py:61 | Mapping country names to ISO3 codes...
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:68 | After ISO3 mapping: 10,339 records (10.3%)
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:72 | After filtering to Exports: 0 records
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After filtering to Pharma/Textiles: 0 records
+2025-11-14 11:48:47 | [31mERROR[0m | src.data.loaders | loaders.py:364 | Failed to load Comtrade: boolean value of NA is ambiguous
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 362, in load_all
+    data['comtrade'] = self.comtrade_loader.load()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 113, in load
+    df = reduce_memory_usage(df, verbose=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/utils/helpers.py", line 240, in reduce_memory_usage
+    if c_min > np.finfo(np.float32).min and c_max < np.finfo(np.float32).max:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "missing.pyx", line 392, in pandas._libs.missing.NAType.__bool__
+TypeError: boolean value of NA is ambiguous
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:162 | Loading World Bank data...
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank gdp_usd from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 gdp_usd records
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank population from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_SP.POP.TOTL_DS2_en_csv_v2_76034.csv
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 population records
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank inflation_rate from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_FP.CPI.TOTL.ZG_DS2_en_csv_v2_73483.csv
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 inflation_rate records
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:181 | Merging World Bank indicators...
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:188 | Final World Bank data: 17,290 country-year records
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:202 | Loading CEPII GeoDist data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/cepii/dist_cepii.csv
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:206 | Loaded 50,176 country pair distances
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:232 | Final CEPII data: 50,176 country pairs
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:246 | Loading WTO RTA data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/rta/AllRTAs.csv
+2025-11-14 11:48:47 | [32mINFO[0m | src.data.loaders | loaders.py:250 | Loaded 649 RTAs
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:296 | Final RTA data: 5,116 FTA country pairs
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:310 | Loading GDELT sentiment from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment.csv
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:314 | Loaded 204,871 sentiment records
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:334 | Final GDELT data: 204,871 sentiment records
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:391 | ============================================================
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:392 | DATA LOADING SUMMARY
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:393 | ============================================================
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:395 | comtrade       :          0 rows
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:395 | world_bank     :     17,290 rows
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:395 | cepii          :     50,176 rows
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:395 | rtas           :      5,116 rows
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:395 | gdelt          :    204,871 rows
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.loaders | loaders.py:396 | ============================================================
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:53 | Step 2: Merging trade data with features...
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:56 | Starting with 0 trade records
+2025-11-14 11:48:48 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:59 | Merging source country features...
+2025-11-14 11:54:26 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:395 | ============================================================
+2025-11-14 11:54:26 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:396 | STARTING PREPROCESSING PIPELINE
+2025-11-14 11:54:26 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:397 | ============================================================
+2025-11-14 11:54:26 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:39 | Step 1: Loading all data sources...
+2025-11-14 11:54:26 | [32mINFO[0m | src.data.loaders | loaders.py:355 | ============================================================
+2025-11-14 11:54:26 | [32mINFO[0m | src.data.loaders | loaders.py:356 | LOADING ALL DATA SOURCES
+2025-11-14 11:54:26 | [32mINFO[0m | src.data.loaders | loaders.py:357 | ============================================================
+2025-11-14 11:54:26 | [32mINFO[0m | src.data.loaders | loaders.py:30 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-14 11:54:27 | [32mINFO[0m | src.data.loaders | loaders.py:39 | Loaded 100,000 raw trade records
+2025-11-14 11:54:27 | [32mINFO[0m | src.data.loaders | loaders.py:40 | Columns: ['typeCode', 'freqCode', 'refPeriodId', 'refYear', 'refMonth', 'period', 'reporterCode', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerCode', 'partnerISO', 'partnerDesc', 'partner2Code', 'partner2ISO', 'partner2Desc', 'classificationCode', 'classificationSearchCode', 'isOriginalClassification', 'cmdCode', 'cmdDesc', 'aggrLevel', 'isLeaf', 'customsCode', 'customsDesc', 'mosCode', 'motCode', 'motDesc', 'qtyUnitCode', 'qtyUnitAbbr', 'qty', 'isQtyEstimated', 'altQtyUnitCode', 'altQtyUnitAbbr', 'altQty', 'isAltQtyEstimated', 'netWgt', 'isNetWgtEstimated', 'grossWgt', 'isGrossWgtEstimated', 'cifvalue', 'fobvalue', 'primaryValue', 'legacyEstimationFlag', 'isReported', 'isAggregate']
+2025-11-14 11:54:27 | [32mINFO[0m | src.data.loaders | loaders.py:61 | Mapping country names to ISO3 codes...
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:68 | After ISO3 mapping: 10,339 records (10.3%)
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:72 | After filtering to Exports: 82 records
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After filtering to Pharma/Textiles: 0 records
+2025-11-14 12:05:32 | [31mERROR[0m | src.data.loaders | loaders.py:364 | Failed to load Comtrade: boolean value of NA is ambiguous
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 362, in load_all
+    data['comtrade'] = self.comtrade_loader.load()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 113, in load
+    df = reduce_memory_usage(df, verbose=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/utils/helpers.py", line 240, in reduce_memory_usage
+    if c_min > np.finfo(np.float32).min and c_max < np.finfo(np.float32).max:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "missing.pyx", line 392, in pandas._libs.missing.NAType.__bool__
+TypeError: boolean value of NA is ambiguous
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:162 | Loading World Bank data...
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank gdp_usd from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 gdp_usd records
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank population from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_SP.POP.TOTL_DS2_en_csv_v2_76034.csv
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 population records
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:130 | Loading World Bank inflation_rate from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_FP.CPI.TOTL.ZG_DS2_en_csv_v2_73483.csv
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:157 | Loaded 17,290 inflation_rate records
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:181 | Merging World Bank indicators...
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:188 | Final World Bank data: 17,290 country-year records
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:202 | Loading CEPII GeoDist data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/cepii/dist_cepii.csv
+2025-11-14 12:05:32 | [32mINFO[0m | src.data.loaders | loaders.py:206 | Loaded 50,176 country pair distances
+2025-11-14 12:05:33 | [32mINFO[0m | src.data.loaders | loaders.py:232 | Final CEPII data: 50,176 country pairs
+2025-11-14 12:05:33 | [32mINFO[0m | src.data.loaders | loaders.py:246 | Loading WTO RTA data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/rta/AllRTAs.csv
+2025-11-14 12:05:33 | [32mINFO[0m | src.data.loaders | loaders.py:250 | Loaded 649 RTAs
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:296 | Final RTA data: 5,116 FTA country pairs
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:310 | Loading GDELT sentiment from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment.csv
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:314 | Loaded 204,871 sentiment records
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:334 | Final GDELT data: 204,871 sentiment records
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:391 | ============================================================
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:392 | DATA LOADING SUMMARY
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:393 | ============================================================
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:395 | comtrade       :          0 rows
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:395 | world_bank     :     17,290 rows
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:395 | cepii          :     50,176 rows
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:395 | rtas           :      5,116 rows
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:395 | gdelt          :    204,871 rows
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.loaders | loaders.py:396 | ============================================================
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:53 | Step 2: Merging trade data with features...
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:56 | Starting with 0 trade records
+2025-11-14 12:05:34 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:59 | Merging source country features...
+2025-11-14 13:07:31 | [32mINFO[0m | src.data.loaders | loaders.py:30 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData_6_18_2025_13_36_12.csv
+2025-11-14 13:08:16 | [32mINFO[0m | src.data.loaders | loaders.py:30 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-14 13:08:17 | [32mINFO[0m | src.data.loaders | loaders.py:39 | Loaded 100,000 raw trade records
+2025-11-14 13:08:17 | [32mINFO[0m | src.data.loaders | loaders.py:40 | Columns: ['typeCode', 'freqCode', 'refPeriodId', 'refYear', 'refMonth', 'period', 'reporterCode', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerCode', 'partnerISO', 'partnerDesc', 'partner2Code', 'partner2ISO', 'partner2Desc', 'classificationCode', 'classificationSearchCode', 'isOriginalClassification', 'cmdCode', 'cmdDesc', 'aggrLevel', 'isLeaf', 'customsCode', 'customsDesc', 'mosCode', 'motCode', 'motDesc', 'qtyUnitCode', 'qtyUnitAbbr', 'qty', 'isQtyEstimated', 'altQtyUnitCode', 'altQtyUnitAbbr', 'altQty', 'isAltQtyEstimated', 'netWgt', 'isNetWgtEstimated', 'grossWgt', 'isGrossWgtEstimated', 'cifvalue', 'fobvalue', 'primaryValue', 'legacyEstimationFlag', 'isReported', 'isAggregate']
+2025-11-14 13:08:17 | [32mINFO[0m | src.data.loaders | loaders.py:61 | Mapping country names to ISO3 codes...
+2025-11-14 13:19:13 | [32mINFO[0m | src.data.loaders | loaders.py:68 | After ISO3 mapping: 10,339 records (10.3%)
+2025-11-14 13:19:13 | [32mINFO[0m | src.data.loaders | loaders.py:80 | After filtering to Exports: 0 records
+2025-11-14 13:19:13 | [32mINFO[0m | src.data.loaders | loaders.py:92 | After filtering invalid values: 0 records
+2025-11-14 13:19:13 | [32mINFO[0m | src.data.loaders | loaders.py:133 | Sector distribution: {}
+2025-11-14 13:19:13 | [32mINFO[0m | src.data.loaders | loaders.py:137 | After filtering to Pharma/Textiles: 0 records
+2025-11-14 13:19:13 | [33mWARNING[0m | src.data.loaders | loaders.py:160 | Memory reduction failed: boolean value of NA is ambiguous, continuing without it
+2025-11-14 13:19:13 | [32mINFO[0m | src.data.loaders | loaders.py:162 | Final Comtrade data: 0 records
+2025-11-14 13:19:13 | [31mERROR[0m | src.data.loaders | loaders.py:165 | ⚠️  WARNING: No Comtrade data after filtering!
+2025-11-14 13:19:13 | [31mERROR[0m | src.data.loaders | loaders.py:166 | Check: 1) HS codes in your data, 2) Flow codes (X vs Export)
+2025-11-14 13:39:49 | [32mINFO[0m | src.data.loaders | loaders.py:29 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-14 13:39:49 | [32mINFO[0m | src.data.loaders | loaders.py:32 | Loaded 100,000 raw trade records
+2025-11-14 13:39:49 | [32mINFO[0m | src.data.loaders | loaders.py:51 | After filtering Exports: 40,631
+2025-11-14 13:39:49 | [32mINFO[0m | src.data.loaders | loaders.py:58 | After ISO3 cleaning: 40,631
+2025-11-14 13:39:49 | [32mINFO[0m | src.data.loaders | loaders.py:81 | After sector filtering: 0
+2025-11-14 13:39:49 | [32mINFO[0m | src.data.loaders | loaders.py:104 | Final Comtrade rows: 0
+2025-11-14 13:44:41 | [32mINFO[0m | src.data.loaders | loaders.py:86 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-14 13:44:41 | [32mINFO[0m | src.data.loaders | loaders.py:35 | Loaded CSV with encoding=latin1
+2025-11-14 13:44:41 | [32mINFO[0m | src.data.loaders | loaders.py:95 | Loaded 100,000 raw trade records
+2025-11-14 13:44:41 | [32mINFO[0m | src.data.loaders | loaders.py:122 | Mapping country identifiers to ISO3...
+2025-11-14 13:47:35 | [32mINFO[0m | src.data.loaders | loaders.py:129 | After ISO3 mapping: 95,970 records (96.0%)
+2025-11-14 13:47:35 | [32mINFO[0m | src.data.loaders | loaders.py:145 | After filtering Exports: 39,120 records
+2025-11-14 13:47:35 | [32mINFO[0m | src.data.loaders | loaders.py:164 | After sector filtering: 0 records
+2025-11-14 13:47:35 | [32mINFO[0m | src.data.loaders | loaders.py:192 | After filtering invalid trade values: 0 (dropped 0)
+2025-11-14 13:47:35 | [33mWARNING[0m | src.data.loaders | loaders.py:231 | Memory reduction failed: boolean value of NA is ambiguous; continuing without it
+2025-11-14 13:47:35 | [32mINFO[0m | src.data.loaders | loaders.py:233 | Final Comtrade data: 0 records
+2025-11-14 13:47:35 | [31mERROR[0m | src.data.loaders | loaders.py:236 | ⚠️ WARNING: No Comtrade data after filtering!
+2025-11-14 13:47:35 | [31mERROR[0m | src.data.loaders | loaders.py:237 | Check: flowCode values, cmdDesc presence, and ISO mapping
+2025-11-14 13:53:31 | [32mINFO[0m | src.data.loaders | loaders.py:86 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-14 13:53:31 | [32mINFO[0m | src.data.loaders | loaders.py:35 | Loaded CSV with encoding=latin1
+2025-11-14 13:53:31 | [32mINFO[0m | src.data.loaders | loaders.py:95 | Loaded 100,000 raw trade records
+2025-11-14 13:53:31 | [32mINFO[0m | src.data.loaders | loaders.py:129 | Mapping country identifiers to ISO3...
+2025-11-14 13:56:30 | [32mINFO[0m | src.data.loaders | loaders.py:136 | After ISO3 mapping: 95,970 records (96.0%)
+2025-11-14 13:56:30 | [32mINFO[0m | src.data.loaders | loaders.py:152 | After filtering Exports: 39,120 records
+2025-11-14 13:56:30 | [32mINFO[0m | src.data.loaders | loaders.py:171 | After sector filtering: 39,120 records
+2025-11-14 13:56:30 | [32mINFO[0m | src.data.loaders | loaders.py:199 | After filtering invalid trade values: 1,682 (dropped 37,438)
+2025-11-14 13:56:30 | [32mINFO[0m | src.data.loaders | loaders.py:240 | Final Comtrade data: 1,682 records
+2025-11-14 23:49:52 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-14 23:49:52 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 271,609 raw trade records
+2025-11-14 23:49:52 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-14 23:49:52 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-14 23:49:52 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-14 23:49:52 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-14 23:54:51 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 219,469 records (80.8%)
+2025-11-14 23:54:51 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 219,469 records
+2025-11-14 23:54:51 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 219,469 records
+2025-11-14 23:54:52 | [32mINFO[0m | src.data.loaders | loaders.py:166 | Sector distribution: {'Other': 219469}
+2025-11-14 23:54:52 | [32mINFO[0m | src.data.loaders | loaders.py:170 | After filtering to Pharma/Textiles: 0 records
+2025-11-14 23:54:52 | [33mWARNING[0m | src.data.loaders | loaders.py:193 | Memory reduction failed: boolean value of NA is ambiguous, continuing without it
+2025-11-14 23:54:52 | [32mINFO[0m | src.data.loaders | loaders.py:195 | Final Comtrade data: 0 records
+2025-11-14 23:54:52 | [31mERROR[0m | src.data.loaders | loaders.py:198 | ⚠️  WARNING: No Comtrade data after filtering!
+2025-11-14 23:54:52 | [31mERROR[0m | src.data.loaders | loaders.py:199 | Check: 1) HS codes in your data, 2) Flow codes (X vs Export)
+2025-11-15 00:01:33 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 00:01:33 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 271,609 raw trade records
+2025-11-15 00:01:33 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 00:01:33 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 00:01:33 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 00:01:33 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 00:06:32 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 219,469 records (80.8%)
+2025-11-15 00:06:32 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 219,469 records
+2025-11-15 00:06:32 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 219,469 records
+2025-11-15 00:06:32 | [32mINFO[0m | src.data.loaders | loaders.py:191 | Sector distribution: {'Textiles': 177271, 'Pharmaceuticals': 42198}
+2025-11-15 00:06:32 | [32mINFO[0m | src.data.loaders | loaders.py:195 | After filtering to Pharma/Textiles: 219,469 records
+2025-11-15 00:06:32 | [32mINFO[0m | src.data.loaders | loaders.py:220 | Final Comtrade data: 219,469 records
+2025-11-15 00:41:43 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 00:41:43 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 00:41:43 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 00:41:43 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 00:41:43 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 00:41:43 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 00:46:55 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 239,810 records (81.5%)
+2025-11-15 00:46:55 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 239,810 records
+2025-11-15 00:46:55 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 239,810 records
+2025-11-15 00:46:56 | [32mINFO[0m | src.data.loaders | loaders.py:191 | Sector distribution: {'Textiles': 195075, 'Pharmaceuticals': 44735}
+2025-11-15 00:46:56 | [32mINFO[0m | src.data.loaders | loaders.py:195 | After filtering to Pharma/Textiles: 239,810 records
+2025-11-15 00:46:56 | [32mINFO[0m | src.data.loaders | loaders.py:220 | Final Comtrade data: 239,810 records
+2025-11-15 11:12:24 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 11:12:25 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 11:12:25 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 11:12:25 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 11:12:25 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 11:12:25 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 11:12:37 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 274,780 records (93.4%)
+2025-11-15 11:12:37 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 274,780 records
+2025-11-15 11:12:37 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 274,780 records
+2025-11-15 11:12:37 | [32mINFO[0m | src.data.loaders | loaders.py:191 | Sector distribution: {'Textiles': 223708, 'Pharmaceuticals': 51072}
+2025-11-15 11:12:37 | [32mINFO[0m | src.data.loaders | loaders.py:195 | After filtering to Pharma/Textiles: 274,780 records
+2025-11-15 11:12:38 | [32mINFO[0m | src.data.loaders | loaders.py:220 | Final Comtrade data: 274,780 records
+2025-11-15 11:14:15 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 11:14:15 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 11:14:15 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 11:14:15 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 11:14:15 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 11:14:15 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 11:14:20 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 275,034 records (93.5%)
+2025-11-15 11:14:20 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 275,034 records
+2025-11-15 11:14:20 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 275,034 records
+2025-11-15 11:14:21 | [32mINFO[0m | src.data.loaders | loaders.py:191 | Sector distribution: {'Textiles': 223943, 'Pharmaceuticals': 51091}
+2025-11-15 11:14:21 | [32mINFO[0m | src.data.loaders | loaders.py:195 | After filtering to Pharma/Textiles: 275,034 records
+2025-11-15 11:14:21 | [32mINFO[0m | src.data.loaders | loaders.py:220 | Final Comtrade data: 275,034 records
+2025-11-15 11:15:00 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 11:15:00 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 11:15:00 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 11:15:00 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 11:15:00 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 11:15:00 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 11:15:05 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 275,074 records (93.5%)
+2025-11-15 11:15:05 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 275,074 records
+2025-11-15 11:15:05 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 275,074 records
+2025-11-15 11:15:05 | [32mINFO[0m | src.data.loaders | loaders.py:191 | Sector distribution: {'Textiles': 223979, 'Pharmaceuticals': 51095}
+2025-11-15 11:15:05 | [32mINFO[0m | src.data.loaders | loaders.py:195 | After filtering to Pharma/Textiles: 275,074 records
+2025-11-15 11:15:05 | [32mINFO[0m | src.data.loaders | loaders.py:220 | Final Comtrade data: 275,074 records
+2025-11-15 11:32:27 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 11:32:27 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 11:32:27 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 11:32:27 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 11:32:27 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 11:32:27 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 11:32:32 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 275,074 records (93.5%)
+2025-11-15 11:32:32 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 275,074 records
+2025-11-15 11:32:32 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 275,074 records
+2025-11-15 11:32:32 | [32mINFO[0m | src.data.loaders | loaders.py:191 | Sector distribution: {'Textiles': 223979, 'Pharmaceuticals': 51095}
+2025-11-15 11:32:33 | [32mINFO[0m | src.data.loaders | loaders.py:195 | After filtering to Pharma/Textiles: 275,074 records
+2025-11-15 11:32:33 | [32mINFO[0m | src.data.loaders | loaders.py:220 | Final Comtrade data: 275,074 records
+2025-11-15 11:32:57 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:69 | ✅ BigQuery client initialized for project: trade-forecasting
+2025-11-15 11:32:57 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:238 | Fetching latest GDELT data (1 days back)
+2025-11-15 11:32:57 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:103 | Fetching GDELT sentiment from 2025-11-14 to 2025-11-15
+2025-11-15 11:32:57 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:132 | Executing BigQuery query for sentiment aggregates...
+2025-11-15 11:32:58 | [31mERROR[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:147 | Failed to fetch sentiment aggregates: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/trade-forecasting/jobs?prettyPrint=false: Access Denied: Project trade-forecasting: User does not have bigquery.jobs.create permission in project trade-forecasting.
+
+Location: None
+Job ID: aec3a2c2-5540-41e8-876b-bbb8b0194f7c
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/pipelines/gdelt_fetcher.py", line 133, in fetch_sentiment_aggregates
+    df = self.client.query(query).to_dataframe()
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/client.py", line 3492, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/_job_helpers.py", line 159, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/_job_helpers.py", line 136, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 1378, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/base.py", line 743, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/client.py", line 833, in _call_api
+    return call()
+           ^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/trade-forecasting/jobs?prettyPrint=false: Access Denied: Project trade-forecasting: User does not have bigquery.jobs.create permission in project trade-forecasting.
+
+Location: None
+Job ID: aec3a2c2-5540-41e8-876b-bbb8b0194f7c
+
+2025-11-15 11:32:58 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:180 | Fetching GDELT articles from 2025-11-14 to 2025-11-15
+2025-11-15 11:32:58 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:204 | Executing BigQuery query for news articles...
+2025-11-15 11:32:59 | [31mERROR[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:218 | Failed to fetch news articles: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/trade-forecasting/jobs?prettyPrint=false: Access Denied: Project trade-forecasting: User does not have bigquery.jobs.create permission in project trade-forecasting.
+
+Location: None
+Job ID: 0d86b2d9-5eda-44a2-affe-fcb43e413b9c
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/pipelines/gdelt_fetcher.py", line 205, in fetch_news_articles
+    df = self.client.query(query).to_dataframe()
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/client.py", line 3492, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/_job_helpers.py", line 159, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/_job_helpers.py", line 136, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 1378, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/base.py", line 743, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/client.py", line 833, in _call_api
+    return call()
+           ^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/trade-forecasting/jobs?prettyPrint=false: Access Denied: Project trade-forecasting: User does not have bigquery.jobs.create permission in project trade-forecasting.
+
+Location: None
+Job ID: 0d86b2d9-5eda-44a2-affe-fcb43e413b9c
+
+2025-11-15 11:35:36 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:69 | ✅ BigQuery client initialized for project: trade-forecasting-gdelt
+2025-11-15 11:35:36 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:238 | Fetching latest GDELT data (1 days back)
+2025-11-15 11:35:36 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:103 | Fetching GDELT sentiment from 2025-11-14 to 2025-11-15
+2025-11-15 11:35:36 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:132 | Executing BigQuery query for sentiment aggregates...
+2025-11-15 11:35:40 | [31mERROR[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:147 | Failed to fetch sentiment aggregates: Please install the 'db-dtypes' package to use this function.
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/_pandas_helpers.py", line 42, in <module>
+    import db_dtypes  # type: ignore
+    ^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'db_dtypes'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/pipelines/gdelt_fetcher.py", line 133, in fetch_sentiment_aggregates
+    df = self.client.query(query).to_dataframe()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 2053, in to_dataframe
+    return query_result.to_dataframe(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/table.py", line 2287, in to_dataframe
+    _pandas_helpers.verify_pandas_imports()
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/_pandas_helpers.py", line 1024, in verify_pandas_imports
+    raise ValueError(_NO_DB_TYPES_ERROR) from db_dtypes_import_exception
+ValueError: Please install the 'db-dtypes' package to use this function.
+2025-11-15 11:35:40 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:180 | Fetching GDELT articles from 2025-11-14 to 2025-11-15
+2025-11-15 11:35:40 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:204 | Executing BigQuery query for news articles...
+2025-11-15 11:35:41 | [31mERROR[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:218 | Failed to fetch news articles: 403 Quota exceeded: Your project exceeded quota for free query bytes scanned. For more information, see https://cloud.google.com/bigquery/docs/troubleshoot-quotas; reason: quotaExceeded, location: unbilled.analysis, message: Quota exceeded: Your project exceeded quota for free query bytes scanned. For more information, see https://cloud.google.com/bigquery/docs/troubleshoot-quotas
+
+Location: US
+Job ID: 4c3df50d-7e44-4eda-8c61-87d9f64d9363
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/pipelines/gdelt_fetcher.py", line 205, in fetch_news_articles
+    df = self.client.query(query).to_dataframe()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 2052, in to_dataframe
+    query_result = wait_for_query(self, progress_bar_type, max_results=max_results)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/_tqdm_helpers.py", line 107, in wait_for_query
+    return query_job.result(max_results=max_results)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 1676, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 1625, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.Forbidden: 403 Quota exceeded: Your project exceeded quota for free query bytes scanned. For more information, see https://cloud.google.com/bigquery/docs/troubleshoot-quotas; reason: quotaExceeded, location: unbilled.analysis, message: Quota exceeded: Your project exceeded quota for free query bytes scanned. For more information, see https://cloud.google.com/bigquery/docs/troubleshoot-quotas
+
+Location: US
+Job ID: 4c3df50d-7e44-4eda-8c61-87d9f64d9363
+
+2025-11-15 11:37:13 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:69 | ✅ BigQuery client initialized for project: trade-forecasting-gdelt
+2025-11-15 11:37:13 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:238 | Fetching latest GDELT data (1 days back)
+2025-11-15 11:37:13 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:103 | Fetching GDELT sentiment from 2025-11-14 to 2025-11-15
+2025-11-15 11:37:13 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:132 | Executing BigQuery query for sentiment aggregates...
+2025-11-15 11:37:16 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:135 | Fetched 3,820 sentiment aggregates
+2025-11-15 11:37:16 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:142 | After cleaning: 3,820 aggregates
+2025-11-15 11:37:16 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:180 | Fetching GDELT articles from 2025-11-14 to 2025-11-15
+2025-11-15 11:37:16 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:204 | Executing BigQuery query for news articles...
+2025-11-15 11:37:17 | [31mERROR[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:218 | Failed to fetch news articles: 403 Quota exceeded: Your project exceeded quota for free query bytes scanned. For more information, see https://cloud.google.com/bigquery/docs/troubleshoot-quotas; reason: quotaExceeded, location: unbilled.analysis, message: Quota exceeded: Your project exceeded quota for free query bytes scanned. For more information, see https://cloud.google.com/bigquery/docs/troubleshoot-quotas
+
+Location: US
+Job ID: b5ccd1dc-9bdd-47b7-a578-89708b62f92c
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/pipelines/gdelt_fetcher.py", line 205, in fetch_news_articles
+    df = self.client.query(query).to_dataframe()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 2052, in to_dataframe
+    query_result = wait_for_query(self, progress_bar_type, max_results=max_results)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/_tqdm_helpers.py", line 107, in wait_for_query
+    return query_job.result(max_results=max_results)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 1676, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py", line 1625, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.Forbidden: 403 Quota exceeded: Your project exceeded quota for free query bytes scanned. For more information, see https://cloud.google.com/bigquery/docs/troubleshoot-quotas; reason: quotaExceeded, location: unbilled.analysis, message: Quota exceeded: Your project exceeded quota for free query bytes scanned. For more information, see https://cloud.google.com/bigquery/docs/troubleshoot-quotas
+
+Location: US
+Job ID: b5ccd1dc-9bdd-47b7-a578-89708b62f92c
+
+2025-11-15 11:37:18 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:265 | Saved sentiment data to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment_20251115_113717.csv
+2025-11-15 11:37:18 | [32mINFO[0m | src.pipelines.gdelt_fetcher | gdelt_fetcher.py:270 | Updated /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment.csv
+2025-11-15 11:38:27 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 11:38:27 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 11:38:27 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 11:38:27 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 11:38:27 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 11:38:27 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 11:38:33 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 275,074 records (93.5%)
+2025-11-15 11:38:33 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 275,074 records
+2025-11-15 11:38:33 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 275,074 records
+2025-11-15 11:38:33 | [32mINFO[0m | src.data.loaders | loaders.py:191 | Sector distribution: {'Textiles': 223979, 'Pharmaceuticals': 51095}
+2025-11-15 11:38:33 | [32mINFO[0m | src.data.loaders | loaders.py:195 | After filtering to Pharma/Textiles: 275,074 records
+2025-11-15 11:38:33 | [32mINFO[0m | src.data.loaders | loaders.py:220 | Final Comtrade data: 275,074 records
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:414 | ============================================================
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:415 | STARTING PREPROCESSING PIPELINE
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:416 | ============================================================
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:39 | Step 1: Loading all data sources...
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:465 | ============================================================
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:466 | LOADING ALL DATA SOURCES
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:467 | ============================================================
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 11:47:15 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 275,074 records (93.5%)
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 275,074 records
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 275,074 records
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:191 | Sector distribution: {'Textiles': 223979, 'Pharmaceuticals': 51095}
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:195 | After filtering to Pharma/Textiles: 275,074 records
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:220 | Final Comtrade data: 275,074 records
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:272 | Loading World Bank data...
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:240 | Loading World Bank gdp_usd from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:267 | Loaded 17,290 gdp_usd records
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:240 | Loading World Bank population from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_SP.POP.TOTL_DS2_en_csv_v2_76034.csv
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:267 | Loaded 17,290 population records
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:240 | Loading World Bank inflation_rate from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_FP.CPI.TOTL.ZG_DS2_en_csv_v2_73483.csv
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:267 | Loaded 17,290 inflation_rate records
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:291 | Merging World Bank indicators...
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:298 | Final World Bank data: 17,290 country-year records
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:312 | Loading CEPII GeoDist data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/cepii/dist_cepii.csv
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:316 | Loaded 50,176 country pair distances
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:342 | Final CEPII data: 50,176 country pairs
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:356 | Loading WTO RTA data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/rta/AllRTAs.csv
+2025-11-15 11:47:20 | [32mINFO[0m | src.data.loaders | loaders.py:360 | Loaded 649 RTAs
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:406 | Final RTA data: 5,359 FTA country pairs
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:420 | Loading GDELT sentiment from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment.csv
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:424 | Loaded 3,820 sentiment records
+2025-11-15 11:47:21 | [31mERROR[0m | src.data.loaders | loaders.py:498 | Failed to load GDELT: Can only use .str accessor with string values!
+Traceback (most recent call last):
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 496, in load_all
+    data['gdelt'] = self.gdelt_loader.load()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/src/data/loaders.py", line 427, in load
+    df[['year', 'month']] = df['month'].str.split('-', expand=True)
+                            ^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/core/strings/accessor.py", line 191, in __init__
+    self._inferred_dtype = self._validate(data)
+                           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anca/Documents/GNN-Based-Trade-Forecasting/venv/lib/python3.11/site-packages/pandas/core/strings/accessor.py", line 245, in _validate
+    raise AttributeError("Can only use .str accessor with string values!")
+AttributeError: Can only use .str accessor with string values!
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:501 | ============================================================
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:502 | DATA LOADING SUMMARY
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:503 | ============================================================
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:505 | comtrade       :    275,074 rows
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:505 | world_bank     :     17,290 rows
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:505 | cepii          :     50,176 rows
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:505 | rtas           :      5,359 rows
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:505 | gdelt          :          0 rows
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.loaders | loaders.py:506 | ============================================================
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:53 | Step 2: Merging trade data with features...
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:70 | Starting with 275,074 trade records
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:73 | Merging source country features...
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:89 | Merging target country features...
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:103 | After World Bank merge: 275,074 records
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:106 | Merging CEPII distance features...
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:115 | Merging RTA (FTA) flags...
+2025-11-15 11:47:21 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:126 | Merging GDELT sentiment...
+2025-11-15 11:57:20 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 11:57:20 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 11:57:20 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 11:57:20 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 11:57:20 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 11:57:20 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 11:57:26 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 275,074 records (93.5%)
+2025-11-15 11:57:26 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 275,074 records
+2025-11-15 11:57:26 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 275,074 records
+2025-11-15 11:57:26 | [32mINFO[0m | src.data.loaders | loaders.py:158 | Sector distribution: {'Textiles': 223979, 'Pharmaceuticals': 51095}
+2025-11-15 11:57:26 | [32mINFO[0m | src.data.loaders | loaders.py:162 | After filtering to Pharma/Textiles: 275,074 records
+2025-11-15 11:57:26 | [32mINFO[0m | src.data.loaders | loaders.py:187 | Final Comtrade data: 275,074 records
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:424 | ============================================================
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:425 | STARTING PREPROCESSING PIPELINE
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:426 | ============================================================
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:39 | Step 1: Loading all data sources...
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:475 | ============================================================
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:476 | LOADING ALL DATA SOURCES
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:477 | ============================================================
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 12:00:00 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 12:00:05 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 275,074 records (93.5%)
+2025-11-15 12:00:05 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 275,074 records
+2025-11-15 12:00:05 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 275,074 records
+2025-11-15 12:00:05 | [32mINFO[0m | src.data.loaders | loaders.py:158 | Sector distribution: {'Textiles': 223979, 'Pharmaceuticals': 51095}
+2025-11-15 12:00:05 | [32mINFO[0m | src.data.loaders | loaders.py:162 | After filtering to Pharma/Textiles: 275,074 records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:187 | Final Comtrade data: 275,074 records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:239 | Loading World Bank data...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:207 | Loading World Bank gdp_usd from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:234 | Loaded 17,290 gdp_usd records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:207 | Loading World Bank population from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_SP.POP.TOTL_DS2_en_csv_v2_76034.csv
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:234 | Loaded 17,290 population records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:207 | Loading World Bank inflation_rate from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_FP.CPI.TOTL.ZG_DS2_en_csv_v2_73483.csv
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:234 | Loaded 17,290 inflation_rate records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:258 | Merging World Bank indicators...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:265 | Final World Bank data: 17,290 country-year records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:279 | Loading CEPII GeoDist data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/cepii/dist_cepii.csv
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:283 | Loaded 50,176 country pair distances
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:309 | Final CEPII data: 50,176 country pairs
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:323 | Loading WTO RTA data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/rta/AllRTAs.csv
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:327 | Loaded 649 RTAs
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:373 | Final RTA data: 5,359 FTA country pairs
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:387 | Loading GDELT sentiment from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment.csv
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:391 | Loaded 3,820 sentiment records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:394 | GDELT columns: ['year', 'month', 'country_1_iso3', 'country_2_iso3', 'avg_tone', 'article_count', 'goldstein_scale_avg']
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:454 | Final GDELT data: 3,820 sentiment records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:511 | ============================================================
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:512 | DATA LOADING SUMMARY
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:513 | ============================================================
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:515 | comtrade       :    275,074 rows
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:515 | world_bank     :     17,290 rows
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:515 | cepii          :     50,176 rows
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:515 | rtas           :      5,359 rows
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:515 | gdelt          :      3,820 rows
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.loaders | loaders.py:516 | ============================================================
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:53 | Step 2: Merging trade data with features...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:70 | Starting with 275,074 trade records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:73 | Merging source country features...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:89 | Merging target country features...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:103 | After World Bank merge: 275,074 records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:106 | Merging CEPII distance features...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:115 | Merging RTA (FTA) flags...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:126 | Merging GDELT sentiment...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:154 | After all merges: 275,074 records
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:168 | Step 3: Engineering features...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:171 | Applying log transformations...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:185 | Creating derived features...
+2025-11-15 12:00:06 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:203 | Creating lag features...
+2025-11-15 12:00:07 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:215 | Creating rolling features...
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:229 | After feature engineering: 39 columns
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:235 | Step 4: Handling missing values...
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:245 | Dropped 0 rows with missing critical features
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled quantity missing values with median: 0.00
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled source_gdp_usd missing values with median: 194567373678.10
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled source_population missing values with median: 16073372.00
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled source_inflation missing values with median: 2.06
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled target_gdp_usd missing values with median: 189798603751.23
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled target_population missing values with median: 11439213.00
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled target_inflation missing values with median: 1.97
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled distance_km missing values with median: 5188.54
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled gdp_log_source missing values with median: 25.99
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled gdp_log_target missing values with median: 25.97
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled pop_log_source missing values with median: 16.59
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled pop_log_target missing values with median: 16.25
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled distance_log missing values with median: 8.55
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled gdp_ratio missing values with median: 0.82
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled pop_ratio missing values with median: 0.80
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled combined_gdp_log missing values with median: 27.29
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:274 | Step 5: Creating node dataframe...
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:313 | Created 2,649 node records for 233 countries
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:327 | Step 6: Creating edge dataframe...
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:364 | Created 275,074 edges
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:365 | Train: 266,983 | Val: 1,587 | Test: 6,504
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:368 | Total edges (all countries): 275,074
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:369 | India export edges (prediction target): 22,285 (8.1%)
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:376 | Step 7: Saving processed data...
+2025-11-15 12:00:18 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:381 | Saved nodes to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed/nodes.csv
+2025-11-15 12:00:20 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:386 | Saved edges to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed/edges.csv
+2025-11-15 12:00:20 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:395 | Saved node mapping to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed/node_mapping.json
+2025-11-15 12:00:20 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:413 | Saved metadata to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed/metadata.json
+2025-11-15 12:00:20 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:443 | ============================================================
+2025-11-15 12:00:20 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:444 | PREPROCESSING COMPLETE!
+2025-11-15 12:00:20 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:445 | ============================================================
+2025-11-15 12:00:20 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:446 | Nodes: 2,649 | Edges: 275,074
+2025-11-15 12:00:20 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:447 | Output directory: /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed
+2025-11-15 12:00:56 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:143 | Fetching articles for priority country pairs...
+2025-11-15 12:00:56 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [1/24] Fetching IND-USA...
+2025-11-15 12:00:57 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-USA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22USA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:00:59 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [2/24] Fetching IND-CHN...
+2025-11-15 12:01:00 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:02 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [3/24] Fetching IND-ARE...
+2025-11-15 12:01:03 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-ARE: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22ARE%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:05 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [4/24] Fetching IND-HKG...
+2025-11-15 12:01:06 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-HKG: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22HKG%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:08 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [5/24] Fetching IND-SAU...
+2025-11-15 12:01:09 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SAU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SAU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:11 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [6/24] Fetching IND-SGP...
+2025-11-15 12:01:12 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SGP: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SGP%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:14 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [7/24] Fetching IND-DEU...
+2025-11-15 12:01:15 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-DEU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22DEU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:17 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [8/24] Fetching IND-GBR...
+2025-11-15 12:01:18 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-GBR: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22GBR%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:20 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [9/24] Fetching IND-NLD...
+2025-11-15 12:01:20 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-NLD: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22NLD%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:22 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [10/24] Fetching IND-BEL...
+2025-11-15 12:01:23 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-BEL: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22BEL%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:25 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [11/24] Fetching IND-FRA...
+2025-11-15 12:01:26 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-FRA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22FRA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:28 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [12/24] Fetching IND-ITA...
+2025-11-15 12:01:29 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-ITA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22ITA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:31 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [13/24] Fetching IND-JPN...
+2025-11-15 12:01:32 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-JPN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22JPN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:34 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [14/24] Fetching IND-KOR...
+2025-11-15 12:01:35 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-KOR: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22KOR%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:37 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [15/24] Fetching IND-MYS...
+2025-11-15 12:01:38 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-MYS: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22MYS%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:40 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [16/24] Fetching IND-IDN...
+2025-11-15 12:01:40 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-IDN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22IDN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:42 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [17/24] Fetching IND-THA...
+2025-11-15 12:01:43 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-THA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22THA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:45 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [18/24] Fetching IND-VNM...
+2025-11-15 12:01:46 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-VNM: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22VNM%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:48 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [19/24] Fetching USA-CHN...
+2025-11-15 12:01:49 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for USA-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22USA%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:51 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [20/24] Fetching USA-MEX...
+2025-11-15 12:01:52 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for USA-MEX: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22USA%22+AND+%22MEX%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:54 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [21/24] Fetching DEU-CHN...
+2025-11-15 12:01:55 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for DEU-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22DEU%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:01:57 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [22/24] Fetching CHN-JPN...
+2025-11-15 12:01:58 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for CHN-JPN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22CHN%22+AND+%22JPN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:02:00 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [23/24] Fetching USA-CAN...
+2025-11-15 12:02:00 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for USA-CAN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22USA%22+AND+%22CAN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:02:02 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [24/24] Fetching DEU-FRA...
+2025-11-15 12:02:03 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for DEU-FRA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22DEU%22+AND+%22FRA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:02:05 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:158 | No articles fetched!
+2025-11-15 12:05:11 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:143 | Fetching articles for priority country pairs...
+2025-11-15 12:05:11 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [1/24] Fetching IND-USA...
+2025-11-15 12:05:12 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-USA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22USA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:05:14 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [2/24] Fetching IND-CHN...
+2025-11-15 12:05:15 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:05:17 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [3/24] Fetching IND-ARE...
+2025-11-15 12:05:18 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-ARE: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22ARE%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:05:20 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [4/24] Fetching IND-HKG...
+2025-11-15 12:05:20 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-HKG: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22HKG%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:05:22 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [5/24] Fetching IND-SAU...
+2025-11-15 12:05:23 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SAU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SAU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:05:25 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [6/24] Fetching IND-SGP...
+2025-11-15 12:05:26 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SGP: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SGP%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 12:05:28 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [7/24] Fetching IND-DEU...
+2025-11-15 12:05:29 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-DEU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22DEU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:424 | ============================================================
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:425 | STARTING PREPROCESSING PIPELINE
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:426 | ============================================================
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:39 | Step 1: Loading all data sources...
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:475 | ============================================================
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:476 | LOADING ALL DATA SOURCES
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:477 | ============================================================
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:48 | Loading UN Comtrade data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/comtrade/TradeData.csv
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:57 | Loaded 294,258 raw trade records
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:58 | Columns: ['refYear', 'refMonth', 'reporterISO', 'reporterDesc', 'flowCode', 'flowDesc', 'partnerISO', 'partnerDesc', 'cmdCode', 'cmdDesc', 'qtyUnitAbbr', 'qty', 'primaryValue']
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:80 | Checking reporter column format...
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:84 | Sample reporters: ['Azerbaijan' 'Albania']
+2025-11-15 17:28:44 | [32mINFO[0m | src.data.loaders | loaders.py:94 | Mapping country names to ISO3 codes...
+2025-11-15 17:28:49 | [32mINFO[0m | src.data.loaders | loaders.py:101 | After ISO3 mapping: 275,074 records (93.5%)
+2025-11-15 17:28:49 | [32mINFO[0m | src.data.loaders | loaders.py:113 | After filtering to Exports: 275,074 records
+2025-11-15 17:28:49 | [32mINFO[0m | src.data.loaders | loaders.py:125 | After filtering invalid values: 275,074 records
+2025-11-15 17:28:49 | [32mINFO[0m | src.data.loaders | loaders.py:158 | Sector distribution: {'Textiles': 223979, 'Pharmaceuticals': 51095}
+2025-11-15 17:28:49 | [32mINFO[0m | src.data.loaders | loaders.py:162 | After filtering to Pharma/Textiles: 275,074 records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:187 | Final Comtrade data: 275,074 records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:239 | Loading World Bank data...
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:207 | Loading World Bank gdp_usd from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_NY.GDP.MKTP.CD_DS2_en_csv_v2_75934.csv
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:234 | Loaded 17,290 gdp_usd records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:207 | Loading World Bank population from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_SP.POP.TOTL_DS2_en_csv_v2_76034.csv
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:234 | Loaded 17,290 population records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:207 | Loading World Bank inflation_rate from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/world-bank/API_FP.CPI.TOTL.ZG_DS2_en_csv_v2_73483.csv
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:234 | Loaded 17,290 inflation_rate records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:258 | Merging World Bank indicators...
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:265 | Final World Bank data: 17,290 country-year records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:279 | Loading CEPII GeoDist data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/cepii/dist_cepii.csv
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:283 | Loaded 50,176 country pair distances
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:309 | Final CEPII data: 50,176 country pairs
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:323 | Loading WTO RTA data from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/rta/AllRTAs.csv
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:327 | Loaded 649 RTAs
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:373 | Final RTA data: 5,359 FTA country pairs
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:387 | Loading GDELT sentiment from /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/sentiment.csv
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:391 | Loaded 3,820 sentiment records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:394 | GDELT columns: ['year', 'month', 'country_1_iso3', 'country_2_iso3', 'avg_tone', 'article_count', 'goldstein_scale_avg']
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:454 | Final GDELT data: 3,820 sentiment records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:511 | ============================================================
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:512 | DATA LOADING SUMMARY
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:513 | ============================================================
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:515 | comtrade       :    275,074 rows
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:515 | world_bank     :     17,290 rows
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:515 | cepii          :     50,176 rows
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:515 | rtas           :      5,359 rows
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:515 | gdelt          :      3,820 rows
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.loaders | loaders.py:516 | ============================================================
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:53 | Step 2: Merging trade data with features...
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:70 | Starting with 275,074 trade records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:73 | Merging source country features...
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:89 | Merging target country features...
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:103 | After World Bank merge: 275,074 records
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:106 | Merging CEPII distance features...
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:115 | Merging RTA (FTA) flags...
+2025-11-15 17:28:50 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:126 | Merging GDELT sentiment...
+2025-11-15 17:28:51 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:154 | After all merges: 275,074 records
+2025-11-15 17:28:51 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:168 | Step 3: Engineering features...
+2025-11-15 17:28:51 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:171 | Applying log transformations...
+2025-11-15 17:28:51 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:185 | Creating derived features...
+2025-11-15 17:28:51 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:203 | Creating lag features...
+2025-11-15 17:28:51 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:215 | Creating rolling features...
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:229 | After feature engineering: 39 columns
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:235 | Step 4: Handling missing values...
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:245 | Dropped 0 rows with missing critical features
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled quantity missing values with median: 0.00
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled source_gdp_usd missing values with median: 194567373678.10
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled source_population missing values with median: 16073372.00
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled source_inflation missing values with median: 2.06
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled target_gdp_usd missing values with median: 189798603751.23
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled target_population missing values with median: 11439213.00
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled target_inflation missing values with median: 1.97
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled distance_km missing values with median: 5188.54
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled gdp_log_source missing values with median: 25.99
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled gdp_log_target missing values with median: 25.97
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled pop_log_source missing values with median: 16.59
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled pop_log_target missing values with median: 16.25
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled distance_log missing values with median: 8.55
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled gdp_ratio missing values with median: 0.82
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled pop_ratio missing values with median: 0.80
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:254 | Filled combined_gdp_log missing values with median: 27.29
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:274 | Step 5: Creating node dataframe...
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:313 | Created 2,649 node records for 233 countries
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:327 | Step 6: Creating edge dataframe...
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:364 | Created 275,074 edges
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:365 | Train: 266,983 | Val: 1,587 | Test: 6,504
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:368 | Total edges (all countries): 275,074
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:369 | India export edges (prediction target): 22,285 (8.1%)
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:376 | Step 7: Saving processed data...
+2025-11-15 17:29:02 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:381 | Saved nodes to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed/nodes.csv
+2025-11-15 17:29:04 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:386 | Saved edges to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed/edges.csv
+2025-11-15 17:29:04 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:395 | Saved node mapping to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed/node_mapping.json
+2025-11-15 17:29:04 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:413 | Saved metadata to /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed/metadata.json
+2025-11-15 17:29:04 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:443 | ============================================================
+2025-11-15 17:29:04 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:444 | PREPROCESSING COMPLETE!
+2025-11-15 17:29:04 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:445 | ============================================================
+2025-11-15 17:29:04 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:446 | Nodes: 2,649 | Edges: 275,074
+2025-11-15 17:29:04 | [32mINFO[0m | src.data.preprocessing | preprocessing.py:447 | Output directory: /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/processed
+2025-11-15 17:31:31 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:143 | Fetching articles for priority country pairs...
+2025-11-15 17:31:31 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [1/24] Fetching IND-USA...
+2025-11-15 17:31:32 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-USA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22USA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:34 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [2/24] Fetching IND-CHN...
+2025-11-15 17:31:35 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:37 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [3/24] Fetching IND-ARE...
+2025-11-15 17:31:38 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-ARE: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22ARE%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:40 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [4/24] Fetching IND-HKG...
+2025-11-15 17:31:41 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-HKG: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22HKG%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:43 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [5/24] Fetching IND-SAU...
+2025-11-15 17:31:44 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SAU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SAU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:46 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [6/24] Fetching IND-SGP...
+2025-11-15 17:31:47 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SGP: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SGP%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:49 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [7/24] Fetching IND-DEU...
+2025-11-15 17:31:50 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-DEU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22DEU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:52 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [8/24] Fetching IND-GBR...
+2025-11-15 17:31:53 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-GBR: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22GBR%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:55 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [9/24] Fetching IND-NLD...
+2025-11-15 17:31:56 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-NLD: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22NLD%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:31:58 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [10/24] Fetching IND-BEL...
+2025-11-15 17:32:00 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-BEL: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22BEL%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:45:34 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:143 | Fetching articles for priority country pairs...
+2025-11-15 17:45:34 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [1/24] Fetching IND-USA...
+2025-11-15 17:45:36 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-USA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22USA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:45:38 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [2/24] Fetching IND-CHN...
+2025-11-15 17:45:40 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:45:42 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [3/24] Fetching IND-ARE...
+2025-11-15 17:45:43 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-ARE: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22ARE%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:45:45 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [4/24] Fetching IND-HKG...
+2025-11-15 17:46:17 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-HKG: HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=30)
+2025-11-15 17:46:19 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [5/24] Fetching IND-SAU...
+2025-11-15 17:46:23 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SAU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SAU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:25 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [6/24] Fetching IND-SGP...
+2025-11-15 17:46:27 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SGP: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SGP%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:29 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [7/24] Fetching IND-DEU...
+2025-11-15 17:46:30 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-DEU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22DEU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:32 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [8/24] Fetching IND-GBR...
+2025-11-15 17:46:35 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-GBR: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22GBR%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:37 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [9/24] Fetching IND-NLD...
+2025-11-15 17:46:39 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-NLD: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22NLD%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:41 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [10/24] Fetching IND-BEL...
+2025-11-15 17:46:43 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-BEL: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22BEL%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:45 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [11/24] Fetching IND-FRA...
+2025-11-15 17:46:46 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-FRA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22FRA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:48 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [12/24] Fetching IND-ITA...
+2025-11-15 17:46:49 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-ITA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22ITA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:51 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [13/24] Fetching IND-JPN...
+2025-11-15 17:46:54 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-JPN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22JPN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:56 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [14/24] Fetching IND-KOR...
+2025-11-15 17:46:57 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-KOR: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22KOR%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:46:59 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [15/24] Fetching IND-MYS...
+2025-11-15 17:47:02 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-MYS: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22MYS%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:47:04 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [16/24] Fetching IND-IDN...
+2025-11-15 17:47:06 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-IDN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22IDN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:47:08 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [17/24] Fetching IND-THA...
+2025-11-15 17:58:34 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:55 | ⚡ Safe Mode DISABLED: Faster but might hit rate limits
+2025-11-15 17:58:34 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:162 | Fetching articles for priority country pairs...
+2025-11-15 17:58:34 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:168 |   [1/24] Fetching IND-USA...
+2025-11-15 17:58:35 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:120 | Failed to fetch IND-USA: Expecting value: line 1 column 1 (char 0)
+2025-11-15 17:58:37 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:168 |   [2/24] Fetching IND-CHN...
+2025-11-15 17:58:38 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:120 | Failed to fetch IND-CHN: Expecting value: line 1 column 1 (char 0)
+2025-11-15 17:58:40 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:168 |   [3/24] Fetching IND-ARE...
+2025-11-15 17:58:41 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:120 | Failed to fetch IND-ARE: Expecting value: line 1 column 1 (char 0)
+2025-11-15 17:58:43 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:168 |   [4/24] Fetching IND-HKG...
+2025-11-15 17:58:44 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:120 | Failed to fetch IND-HKG: Expecting value: line 1 column 1 (char 0)
+2025-11-15 17:58:46 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:168 |   [5/24] Fetching IND-SAU...
+2025-11-15 17:58:47 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:120 | Failed to fetch IND-SAU: Expecting value: line 1 column 1 (char 0)
+2025-11-15 17:58:49 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:168 |   [6/24] Fetching IND-SGP...
+2025-11-15 17:58:51 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:120 | Failed to fetch IND-SGP: Expecting value: line 1 column 1 (char 0)
+2025-11-15 17:58:53 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:168 |   [7/24] Fetching IND-DEU...
+2025-11-15 17:58:55 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:120 | Failed to fetch IND-DEU: Expecting value: line 1 column 1 (char 0)
+2025-11-15 17:59:14 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:143 | Fetching articles for priority country pairs...
+2025-11-15 17:59:14 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [1/24] Fetching IND-USA...
+2025-11-15 17:59:16 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-USA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22USA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:18 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [2/24] Fetching IND-CHN...
+2025-11-15 17:59:24 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:143 | Fetching articles for priority country pairs...
+2025-11-15 17:59:24 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [1/24] Fetching IND-USA...
+2025-11-15 17:59:25 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-USA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22USA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:27 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [2/24] Fetching IND-CHN...
+2025-11-15 17:59:29 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:31 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [3/24] Fetching IND-ARE...
+2025-11-15 17:59:34 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-ARE: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22ARE%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:36 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [4/24] Fetching IND-HKG...
+2025-11-15 17:59:38 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-HKG: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22HKG%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:40 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [5/24] Fetching IND-SAU...
+2025-11-15 17:59:42 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SAU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SAU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:44 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [6/24] Fetching IND-SGP...
+2025-11-15 17:59:47 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-SGP: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22SGP%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:49 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [7/24] Fetching IND-DEU...
+2025-11-15 17:59:52 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-DEU: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22DEU%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:54 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [8/24] Fetching IND-GBR...
+2025-11-15 17:59:55 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-GBR: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22GBR%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 17:59:57 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [9/24] Fetching IND-NLD...
+2025-11-15 17:59:59 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-NLD: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22NLD%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:01 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [10/24] Fetching IND-BEL...
+2025-11-15 18:00:04 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-BEL: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22BEL%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:06 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [11/24] Fetching IND-FRA...
+2025-11-15 18:00:08 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-FRA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22FRA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:10 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [12/24] Fetching IND-ITA...
+2025-11-15 18:00:12 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-ITA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22ITA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:14 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [13/24] Fetching IND-JPN...
+2025-11-15 18:00:16 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-JPN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22JPN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:18 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [14/24] Fetching IND-KOR...
+2025-11-15 18:00:23 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-KOR: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22KOR%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:25 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [15/24] Fetching IND-MYS...
+2025-11-15 18:00:26 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-MYS: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22MYS%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:28 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [16/24] Fetching IND-IDN...
+2025-11-15 18:00:31 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-IDN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22IDN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:33 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [17/24] Fetching IND-THA...
+2025-11-15 18:00:36 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-THA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22THA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:38 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [18/24] Fetching IND-VNM...
+2025-11-15 18:00:40 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for IND-VNM: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22IND%22+AND+%22VNM%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:42 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [19/24] Fetching USA-CHN...
+2025-11-15 18:00:45 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for USA-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22USA%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:47 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [20/24] Fetching USA-MEX...
+2025-11-15 18:00:48 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for USA-MEX: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22USA%22+AND+%22MEX%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:50 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [21/24] Fetching DEU-CHN...
+2025-11-15 18:00:52 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for DEU-CHN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22DEU%22+AND+%22CHN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:54 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [22/24] Fetching CHN-JPN...
+2025-11-15 18:00:56 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for CHN-JPN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22CHN%22+AND+%22JPN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:00:58 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [23/24] Fetching USA-CAN...
+2025-11-15 18:01:00 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for USA-CAN: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22USA%22+AND+%22CAN%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:01:02 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:149 |   [24/24] Fetching DEU-FRA...
+2025-11-15 18:01:03 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:102 | Failed to fetch articles for DEU-FRA: 429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%22DEU%22+AND+%22FRA%22+AND+%28trade+OR+export+OR+import%29&mode=artlist&maxrecords=15&format=json&timespan=7d
+2025-11-15 18:01:05 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:158 | No articles fetched!
+2025-11-15 18:08:38 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:169 | Fetching articles for priority country pairs...
+2025-11-15 18:08:38 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [1/24] Fetching IND-USA...
+2025-11-15 18:08:43 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [2/24] Fetching IND-CHN...
+2025-11-15 18:08:48 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [3/24] Fetching IND-ARE...
+2025-11-15 18:08:50 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:08:56 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:09:03 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:09:05 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [4/24] Fetching IND-HKG...
+2025-11-15 18:09:10 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [5/24] Fetching IND-SAU...
+2025-11-15 18:09:12 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:09:20 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:09:27 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:09:29 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [6/24] Fetching IND-SGP...
+2025-11-15 18:09:35 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [7/24] Fetching IND-DEU...
+2025-11-15 18:09:44 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [8/24] Fetching IND-GBR...
+2025-11-15 18:09:50 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [9/24] Fetching IND-NLD...
+2025-11-15 18:09:52 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:09:59 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:07 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:09 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [10/24] Fetching IND-BEL...
+2025-11-15 18:10:11 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:25 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:31 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:33 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [11/24] Fetching IND-FRA...
+2025-11-15 18:10:35 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:41 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:48 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:50 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [12/24] Fetching IND-ITA...
+2025-11-15 18:10:53 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:10:59 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:07 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:09 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [13/24] Fetching IND-JPN...
+2025-11-15 18:11:14 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [14/24] Fetching IND-KOR...
+2025-11-15 18:11:15 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:22 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:28 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:30 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [15/24] Fetching IND-MYS...
+2025-11-15 18:11:33 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:40 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:46 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:48 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [16/24] Fetching IND-IDN...
+2025-11-15 18:11:51 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:11:58 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:12:05 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:12:07 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [17/24] Fetching IND-THA...
+2025-11-15 18:12:13 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:12:22 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:12:29 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:12:31 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [18/24] Fetching IND-VNM...
+2025-11-15 18:12:32 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:12:39 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:12:49 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:12:51 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [19/24] Fetching USA-CHN...
+2025-11-15 18:12:57 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [20/24] Fetching USA-MEX...
+2025-11-15 18:12:58 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:13:06 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:13:13 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:13:15 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [21/24] Fetching DEU-CHN...
+2025-11-15 18:13:18 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [22/24] Fetching CHN-JPN...
+2025-11-15 18:13:26 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [23/24] Fetching USA-CAN...
+2025-11-15 18:13:29 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:13:35 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:13:42 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:13:44 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [24/24] Fetching DEU-FRA...
+2025-11-15 18:13:46 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:13:53 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:13:59 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:14:01 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:188 | Fetched 150 total articles
+2025-11-15 18:14:01 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:220 | Created /Users/anca/Documents/GNN-Based-Trade-Forecasting/data/raw/sentiment/articles.csv (89 articles)
+2025-11-15 18:21:36 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:169 | Fetching articles for priority country pairs...
+2025-11-15 18:21:36 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [1/24] Fetching IND-USA...
+2025-11-15 18:21:40 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [2/24] Fetching IND-CHN...
+2025-11-15 18:21:45 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [3/24] Fetching IND-ARE...
+2025-11-15 18:21:47 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:21:55 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:22:01 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:22:03 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [4/24] Fetching IND-HKG...
+2025-11-15 18:22:07 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [5/24] Fetching IND-SAU...
+2025-11-15 18:22:09 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:22:15 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:22:21 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:22:23 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [6/24] Fetching IND-SGP...
+2025-11-15 18:22:27 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [7/24] Fetching IND-DEU...
+2025-11-15 18:22:38 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [8/24] Fetching IND-GBR...
+2025-11-15 18:23:01 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [9/24] Fetching IND-NLD...
+2025-11-15 18:23:31 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:23:40 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:23:46 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:23:48 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [10/24] Fetching IND-BEL...
+2025-11-15 18:23:50 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:23:56 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:02 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:04 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [11/24] Fetching IND-FRA...
+2025-11-15 18:24:05 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:11 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:18 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:20 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [12/24] Fetching IND-ITA...
+2025-11-15 18:24:24 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:31 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:37 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:39 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [13/24] Fetching IND-JPN...
+2025-11-15 18:24:43 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [14/24] Fetching IND-KOR...
+2025-11-15 18:24:46 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:24:58 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:25:04 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:25:06 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [15/24] Fetching IND-MYS...
+2025-11-15 18:25:18 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:25:24 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:25:33 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:25:35 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [16/24] Fetching IND-IDN...
+2025-11-15 18:25:39 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:25:46 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:25:56 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2025-11-15 18:25:58 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [17/24] Fetching IND-THA...
+2025-11-15 18:26:01 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:26:08 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:26:18 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:126 |   Failed after 3 attempts: Expecting value: line 1 column 1 (char 0)
+2025-11-15 18:26:20 | [32mINFO[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:175 |   [18/24] Fetching IND-VNM...
+2025-11-15 18:26:21 | [33mWARNING[0m | src.pipelines.gdelt_article_scheduler | gdelt_article_scheduler.py:123 |   Error, retrying: Expecting value: line 1 column 1 (char 0)
