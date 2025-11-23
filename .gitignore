@@ -275,4 +275,4 @@ credentials/
 __pycache__/
 
 # Re-include source data code
-!src/data/*.py
+!src/data/
