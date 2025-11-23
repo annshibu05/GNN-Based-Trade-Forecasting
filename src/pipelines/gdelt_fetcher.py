@@ -3,6 +3,7 @@ Real-time GDELT data fetcher using Google BigQuery.
 Fetches sentiment scores and raw article metadata.
 """
 
+import sys
 import pandas as pd
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
@@ -17,6 +18,7 @@ except ImportError:
     BIGQUERY_AVAILABLE = False
     print("Warning: google-cloud-bigquery not installed. Install with: pip install google-cloud-bigquery")
 
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from src.utils.logger import get_logger
 from src.utils.config import get_settings, get_config
 from src.utils.helpers import normalize_sentiment, save_dataframe, ensure_directory

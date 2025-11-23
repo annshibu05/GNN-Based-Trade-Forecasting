@@ -62,7 +62,7 @@ export default function PartnerDetailsPage() {
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-muted-foreground">No specific recommendations in mock data.</p>
+              <p className="text-sm text-muted-foreground">No specific recommendations.</p>
             )}
           </div>
           <div className="md:col-span-2 rounded-lg border bg-card/80 shadow-sm p-4">

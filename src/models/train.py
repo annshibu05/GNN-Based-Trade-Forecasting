@@ -357,7 +357,6 @@ def main():
         )
         
         trainer.train(train, val, epochs=100, patience=20)
-        # trainer.train(train, val, epochs=200, patience=30)
         
         trainer.evaluate(test)
         

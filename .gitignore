@@ -264,3 +264,15 @@ yarn.lock
 .dmypy.json
 dmypy.json
 .pyre/
+
+
+data/
+logs/
+credentials/
+*.DS_Store
+*.csv
+*.rdb
+__pycache__/
+
+# Re-include source data code
+!src/data/*.py

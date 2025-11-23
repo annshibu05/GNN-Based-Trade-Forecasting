@@ -16,7 +16,7 @@ print("🔬 MODEL DIAGNOSTIC")
 print("="*60)
 
 # Load model
-model_path = list(Path("models").glob("gnn_20251119_111822.pt"))[-1]
+model_path = list(Path("models").glob("gnn_working.pt"))[-1]
 print(f"\n📦 Loading model: {model_path.name}")
 
 checkpoint = torch.load(model_path, map_location='cpu')
