@@ -22,6 +22,22 @@ from src.data.loaders import GraphDataLoader
 from src.data.country_mapping import MANUAL_MAPPINGS
 from src.utils.logger import get_logger
 
+bilateral_sentiment_df = None
+
+def load_bilateral_sentiment():
+    """Load bilateral sentiment data"""
+    global bilateral_sentiment_df
+    
+    sentiment_path = Path("data/raw/sentiment/bilateral_sentiment.csv")
+    if sentiment_path.exists():
+        bilateral_sentiment_df = pd.read_csv(sentiment_path)
+        logger.info(f"✓ Loaded {len(bilateral_sentiment_df)} bilateral sentiment scores")
+        logger.info(f"  Avg sentiment: {bilateral_sentiment_df['sentiment_score'].mean():.3f}")
+    else:
+        logger.warning(f"⚠️  Bilateral sentiment not found: {sentiment_path}")
+        logger.warning("  Run: python src/pipelines/sentiment_analyzer.py")
+        bilateral_sentiment_df = None
+
 # Import Redis and PostgreSQL (with fallback if not available)
 try:
     from src.api.redis_cache import cache
@@ -151,7 +167,7 @@ async def startup_event():
         
         # Load model
         model_dir = Path("models")
-        model_files = list(model_dir.glob("gnn_*.pt"))
+        model_files = list(model_dir.glob("gnn_working.pt"))
         
         if not model_files:
             logger.error("❌ No trained model found!")
@@ -190,7 +206,7 @@ async def startup_event():
             logger.info(f"✓ Loaded {len(articles_df)} news articles")
         else:
             logger.warning("⚠️  No articles.csv found")
-        
+        load_bilateral_sentiment()
         logger.info("🎉 API ready!")
         
     except Exception as e:
@@ -226,19 +242,183 @@ async def health_check():
     )
 
 
+# @app.get("/api/predictions", response_model=List[Prediction], tags=["Frontend API"])
+# async def get_predictions(
+#     sector: str = Query(..., description="Sector: pharma or textiles"),
+#     month: str = Query(..., description="Month in YYYY-MM format")
+# ):
+#     """Get real predictions from India to all trading partners"""
+    
+#     # Try cache first
+#     if REDIS_AVAILABLE:
+#         cached = cache.get(prefix="predictions", sector=sector, month=month)
+#         if cached:
+#             logger.info("Returning cached predictions")
+#             return cached
+    
+#     if model is None or loader is None:
+#         raise HTTPException(status_code=503, detail="Model not loaded")
+    
+#     try:
+#         year, month_num = map(int, month.split('-'))
+        
+#         sector_map = {"pharma": "Pharmaceuticals", "textiles": "Textiles"}
+#         backend_sector = sector_map.get(sector.lower())
+        
+#         if not backend_sector:
+#             raise HTTPException(status_code=400, detail="Invalid sector")
+        
+#         logger.info(f"Generating predictions for {backend_sector} - {month}")
+        
+#         source_country = "IND"
+#         if source_country not in loader.node_mapping:
+#             raise HTTPException(status_code=400, detail="India not found in data")
+        
+#         source_id = loader.node_mapping[source_country]
+#         num_nodes = len(loader.node_mapping)
+        
+#         # Load ALL node features once
+#         node_features = torch.zeros((num_nodes, 4), dtype=torch.float32)
+        
+#         if loader.nodes_df is not None:
+#             for country_code, node_id in loader.node_mapping.items():
+#                 country_data = loader.nodes_df[
+#                     (loader.nodes_df['iso3'] == country_code) & 
+#                     (loader.nodes_df['year'] <= year)
+#                 ]
+#                 if not country_data.empty:
+#                     latest = country_data.sort_values('year').iloc[-1]
+#                     node_features[node_id, 0] = latest.get('gdp_log', 0)
+#                     node_features[node_id, 1] = latest.get('pop_log', 0)
+        
+#         # Generate predictions
+#         predictions_list = []
+#         target_countries = [c for c in loader.node_mapping.keys() if c != source_country]
+        
+#         for target_country in target_countries:
+#             try:
+#                 target_id = loader.node_mapping[target_country]
+                
+#                 edge_attr = torch.zeros((1, 10), dtype=torch.float32)
+                
+#                 if loader.edges_df is not None:
+#                     edge_data = loader.edges_df[
+#                         (loader.edges_df['source_iso3'] == source_country) & 
+#                         (loader.edges_df['target_iso3'] == target_country) &
+#                         (loader.edges_df['sector'] == backend_sector)
+#                     ]
+                    
+#                     if not edge_data.empty:
+#                         latest_edge = edge_data.sort_values(['year', 'month']).iloc[-1]
+                        
+#                         edge_attr[0, 0] = latest_edge.get('sentiment_norm', 0.5)
+#                         edge_attr[0, 1] = latest_edge.get('avg_tone', 0)
+#                         edge_attr[0, 2] = latest_edge.get('distance_log', 0)
+#                         edge_attr[0, 3] = float(latest_edge.get('shared_language', False))
+#                         edge_attr[0, 4] = float(latest_edge.get('contiguous', False))
+#                         edge_attr[0, 5] = float(latest_edge.get('fta_binary', False))
+#                         edge_attr[0, 6] = 0 if backend_sector == 'Pharmaceuticals' else 1
+#                         edge_attr[0, 7] = latest_edge.get('trade_value_log_lag_1', 0)
+#                         edge_attr[0, 8] = latest_edge.get('trade_value_log_lag_2', 0)
+#                         edge_attr[0, 9] = latest_edge.get('trade_value_log_lag_3', 0)
+                        
+#                         # Calculate change %
+#                         change_pct = 0.0
+#                         historical = edge_data.sort_values(['year', 'month']).drop_duplicates(subset=['year', 'month'], keep='last')
+                        
+#                         if len(historical) >= 2:
+#                             try:
+#                                 recent_years = historical.tail(10)
+#                                 unique_years = recent_years['year'].unique()
+                                
+#                                 if len(unique_years) >= 2:
+#                                     latest_year = unique_years[-1]
+#                                     prev_year = unique_years[-2]
+                                    
+#                                     current_data = recent_years[recent_years['year'] == latest_year]
+#                                     prev_data = recent_years[recent_years['year'] == prev_year]
+                                    
+#                                     current = float(current_data['trade_value_usd'].iloc[-1])
+#                                     previous = float(prev_data['trade_value_usd'].iloc[-1])
+                                    
+#                                     if previous > 0 and current > 0:
+#                                         change_pct = ((current - previous) / previous)
+#                             except Exception as e:
+#                                 logger.warning(f"Change calc failed for {target_country}: {e}")
+#                     else:
+#                         continue
+#                 else:
+#                     continue
+                
+#                 edge_index = torch.LongTensor([[source_id], [target_id]])
+                
+#                 # Make prediction
+#                 with torch.no_grad():
+#                     prediction_log = model(node_features, edge_index, edge_attr).item()
+#                     prediction_usd = float(np.expm1(prediction_log))
+                
+#                 if prediction_usd < 1000:
+#                     continue
+                
+#                 # ✅ FIX: Return confidence as NUMBER (0-1), not string
+#                 years_of_data = len(edge_data['year'].unique())
+#                 has_lag_features = edge_attr[0, 7] > 0
+                
+#                 if years_of_data >= 5 and has_lag_features:
+#                     confidence_score = 0.9
+#                 elif years_of_data >= 3:
+#                     confidence_score = 0.7
+#                 else:
+#                     confidence_score = 0.5
+                
+#                 # Risk level
+#                 if abs(change_pct) < 0.1:
+#                     risk_level = "low"
+#                 elif abs(change_pct) < 0.25:
+#                     risk_level = "medium"
+#                 else:
+#                     risk_level = "high"
+                
+#                 country_name = COUNTRY_NAMES.get(target_country, target_country)
+                
+#                 predictions_list.append(Prediction(
+#                     partnerCode=target_country,
+#                     partner=country_name,
+#                     value=prediction_usd,
+#                     change=change_pct,
+#                     confidence=confidence_score,  # ✅ Now a number!
+#                     risk_level=risk_level
+#                 ))
+                
+#             except Exception as e:
+#                 logger.error(f"Error predicting IND → {target_country}: {e}")
+#                 continue
+        
+#         # Sort by value
+#         predictions_list.sort(key=lambda x: x.value, reverse=True)
+#         result = predictions_list[:50]
+        
+#         # Cache result
+#         if REDIS_AVAILABLE:
+#             cache.set(result, prefix="predictions", ttl=600, sector=sector, month=month)
+        
+#         logger.info(f"Returning {len(result)} real predictions")
+#         return result
+        
+#     except ValueError:
+#         raise HTTPException(status_code=400, detail="Invalid month format")
+#     except Exception as e:
+#         logger.error(f"Prediction error: {e}")
+#         import traceback
+#         traceback.print_exc()
+#         raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/api/predictions", response_model=List[Prediction], tags=["Frontend API"])
 async def get_predictions(
     sector: str = Query(..., description="Sector: pharma or textiles"),
     month: str = Query(..., description="Month in YYYY-MM format")
 ):
-    """Get real predictions from India to all trading partners"""
-    
-    # Try cache first
-    if REDIS_AVAILABLE:
-        cached = cache.get(prefix="predictions", sector=sector, month=month)
-        if cached:
-            logger.info("Returning cached predictions")
-            return cached
+    """Get real predictions from India to all trading partners WITH SENTIMENT"""
     
     if model is None or loader is None:
         raise HTTPException(status_code=503, detail="Model not loaded")
@@ -261,7 +441,7 @@ async def get_predictions(
         source_id = loader.node_mapping[source_country]
         num_nodes = len(loader.node_mapping)
         
-        # Load ALL node features once
+        # Load node features
         node_features = torch.zeros((num_nodes, 4), dtype=torch.float32)
         
         if loader.nodes_df is not None:
@@ -285,6 +465,42 @@ async def get_predictions(
                 
                 edge_attr = torch.zeros((1, 10), dtype=torch.float32)
                 
+                # =====================================================
+                # GET SENTIMENT FROM BILATERAL_SENTIMENT.CSV
+                # =====================================================
+                sentiment_score = 0.0
+                sentiment_confidence = 0.0
+                
+                if bilateral_sentiment_df is not None:
+                    # Try to find sentiment for this pair
+                    sent_row = bilateral_sentiment_df[
+                        ((bilateral_sentiment_df['country_1_iso3'] == source_country) & 
+                         (bilateral_sentiment_df['country_2_iso3'] == target_country)) |
+                        ((bilateral_sentiment_df['country_1_iso3'] == target_country) & 
+                         (bilateral_sentiment_df['country_2_iso3'] == source_country))
+                    ]
+                    
+                    if not sent_row.empty:
+                        sentiment_score = float(sent_row.iloc[0]['sentiment_score'])
+                        sentiment_confidence = float(sent_row.iloc[0]['confidence'])
+                        
+                        # Normalize to [0, 1] for model
+                        sentiment_norm = (sentiment_score + 1.0) / 2.0
+                        
+                        edge_attr[0, 0] = sentiment_norm
+                        edge_attr[0, 1] = abs(sentiment_score)  # Sentiment magnitude
+                    else:
+                        # No sentiment data - use neutral
+                        edge_attr[0, 0] = 0.5  # Neutral
+                        edge_attr[0, 1] = 0.0
+                else:
+                    # No sentiment data loaded
+                    edge_attr[0, 0] = 0.5
+                    edge_attr[0, 1] = 0.0
+                
+                # =====================================================
+                # REST OF EDGE FEATURES (distance, FTA, etc.)
+                # =====================================================
                 if loader.edges_df is not None:
                     edge_data = loader.edges_df[
                         (loader.edges_df['source_iso3'] == source_country) & 
@@ -295,8 +511,6 @@ async def get_predictions(
                     if not edge_data.empty:
                         latest_edge = edge_data.sort_values(['year', 'month']).iloc[-1]
                         
-                        edge_attr[0, 0] = latest_edge.get('sentiment_norm', 0.5)
-                        edge_attr[0, 1] = latest_edge.get('avg_tone', 0)
                         edge_attr[0, 2] = latest_edge.get('distance_log', 0)
                         edge_attr[0, 3] = float(latest_edge.get('shared_language', False))
                         edge_attr[0, 4] = float(latest_edge.get('contiguous', False))
@@ -308,7 +522,9 @@ async def get_predictions(
                         
                         # Calculate change %
                         change_pct = 0.0
-                        historical = edge_data.sort_values(['year', 'month']).drop_duplicates(subset=['year', 'month'], keep='last')
+                        historical = edge_data.sort_values(['year', 'month']).drop_duplicates(
+                            subset=['year', 'month'], keep='last'
+                        )
                         
                         if len(historical) >= 2:
                             try:
@@ -344,16 +560,19 @@ async def get_predictions(
                 if prediction_usd < 1000:
                     continue
                 
-                # ✅ FIX: Return confidence as NUMBER (0-1), not string
-                years_of_data = len(edge_data['year'].unique())
+                # Confidence score
+                years_of_data = len(edge_data['year'].unique()) if not edge_data.empty else 0
                 has_lag_features = edge_attr[0, 7] > 0
+                has_sentiment = sentiment_confidence > 0
                 
-                if years_of_data >= 5 and has_lag_features:
-                    confidence_score = 0.9
+                if years_of_data >= 5 and has_lag_features and has_sentiment:
+                    confidence_score = 0.95
+                elif years_of_data >= 3 and has_sentiment:
+                    confidence_score = 0.80
                 elif years_of_data >= 3:
-                    confidence_score = 0.7
+                    confidence_score = 0.70
                 else:
-                    confidence_score = 0.5
+                    confidence_score = 0.50
                 
                 # Risk level
                 if abs(change_pct) < 0.1:
@@ -370,7 +589,7 @@ async def get_predictions(
                     partner=country_name,
                     value=prediction_usd,
                     change=change_pct,
-                    confidence=confidence_score,  # ✅ Now a number!
+                    confidence=confidence_score,
                     risk_level=risk_level
                 ))
                 
@@ -382,11 +601,9 @@ async def get_predictions(
         predictions_list.sort(key=lambda x: x.value, reverse=True)
         result = predictions_list[:50]
         
-        # Cache result
-        if REDIS_AVAILABLE:
-            cache.set(result, prefix="predictions", ttl=600, sector=sector, month=month)
+        logger.info(f"Returning {len(result)} predictions")
+        logger.info(f"Sentiment data used: {bilateral_sentiment_df is not None}")
         
-        logger.info(f"Returning {len(result)} real predictions")
         return result
         
     except ValueError:
@@ -449,31 +666,118 @@ async def get_alerts(
         return []
 
 
+# @app.get("/api/news", response_model=List[NewsArticle], tags=["Frontend API"])
+# async def get_news(
+#     sector: str = Query(...),
+#     month: str = Query(...),
+#     partner: Optional[str] = Query(None)
+# ):
+#     """Get news from articles.csv"""
+    
+#     if articles_df is None or articles_df.empty:
+#         logger.warning("No articles.csv loaded")
+#         return []
+    
+#     # Handle "undefined" from frontend
+#     if partner and partner in ["undefined", "null", ""]:
+#         partner = None
+    
+#     try:
+#         filtered = articles_df.copy()
+        
+#         required_cols = ['country_1_iso3', 'country_2_iso3', 'title', 'url', 'date', 'sentiment', 'domain']
+#         missing_cols = [col for col in required_cols if col not in filtered.columns]
+#         if missing_cols:
+#             logger.error(f"Missing columns: {missing_cols}")
+#             return []
+        
+#         if partner:
+#             filtered = filtered[
+#                 ((filtered['country_1_iso3'] == 'IND') & (filtered['country_2_iso3'] == partner)) |
+#                 ((filtered['country_1_iso3'] == partner) & (filtered['country_2_iso3'] == 'IND'))
+#             ]
+#         else:
+#             filtered = filtered[
+#                 (filtered['country_1_iso3'] == 'IND') | 
+#                 (filtered['country_2_iso3'] == 'IND')
+#             ]
+        
+#         logger.info(f"Found {len(filtered)} articles")
+        
+#         news_list = []
+#         for idx, row in filtered.head(20).iterrows():
+#             try:
+#                 domain = str(row['domain']) if pd.notna(row['domain']) else "Unknown"
+#                 sentiment_val = 0.0
+#                 if pd.notna(row['sentiment']):
+#                     try:
+#                         sentiment_val = float(row['sentiment'])
+#                     except:
+#                         sentiment_val = 0.0
+                
+#                 country_code = None
+#                 if partner:
+#                     country_code = partner
+#                 elif pd.notna(row['country_2_iso3']) and row['country_2_iso3'] != 'IND':
+#                     country_code = str(row['country_2_iso3'])
+#                 elif pd.notna(row['country_1_iso3']) and row['country_1_iso3'] != 'IND':
+#                     country_code = str(row['country_1_iso3'])
+                
+#                 news_list.append(NewsArticle(
+#                     id=f"news_{idx}",
+#                     title=str(row['title'])[:200],
+#                     snippet=str(row['title'])[:150] + "...",
+#                     source=domain,
+#                     url=str(row['url']),
+#                     date=str(row['date']),
+#                     sentiment=sentiment_val,
+#                     relevance_score=0.8,
+#                     country_code=country_code
+#                 ))
+#             except Exception as e:
+#                 logger.error(f"Error processing article {idx}: {e}")
+#                 continue
+        
+#         logger.info(f"Returning {len(news_list)} articles")
+#         return news_list
+        
+#     except Exception as e:
+#         logger.error(f"News error: {e}")
+#         return []
+
 @app.get("/api/news", response_model=List[NewsArticle], tags=["Frontend API"])
 async def get_news(
     sector: str = Query(...),
     month: str = Query(...),
     partner: Optional[str] = Query(None)
 ):
-    """Get news from articles.csv"""
+    """Get news WITH CALCULATED SENTIMENT from articles_with_sentiment.csv"""
     
-    if articles_df is None or articles_df.empty:
-        logger.warning("No articles.csv loaded")
+    # Try to load articles with calculated sentiment first
+    articles_path_calc = Path("data/raw/sentiment/articles_with_sentiment.csv")
+    
+    if articles_path_calc.exists():
+        articles_df_local = pd.read_csv(articles_path_calc)
+        logger.info(f"Using calculated sentiment from {articles_path_calc}")
+    elif articles_df is not None:
+        articles_df_local = articles_df
+    else:
+        logger.warning("No articles data available")
         return []
     
-    # Handle "undefined" from frontend
     if partner and partner in ["undefined", "null", ""]:
         partner = None
     
     try:
-        filtered = articles_df.copy()
+        filtered = articles_df_local.copy()
         
-        required_cols = ['country_1_iso3', 'country_2_iso3', 'title', 'url', 'date', 'sentiment', 'domain']
+        required_cols = ['country_1_iso3', 'country_2_iso3', 'title', 'url', 'date']
         missing_cols = [col for col in required_cols if col not in filtered.columns]
         if missing_cols:
             logger.error(f"Missing columns: {missing_cols}")
             return []
         
+        # Filter by country pair
         if partner:
             filtered = filtered[
                 ((filtered['country_1_iso3'] == 'IND') & (filtered['country_2_iso3'] == partner)) |
@@ -490,20 +794,26 @@ async def get_news(
         news_list = []
         for idx, row in filtered.head(20).iterrows():
             try:
-                domain = str(row['domain']) if pd.notna(row['domain']) else "Unknown"
+                domain = str(row['domain']) if pd.notna(row.get('domain')) else "Unknown"
+                
+                # GET CALCULATED SENTIMENT (not raw GDELT tone)
                 sentiment_val = 0.0
-                if pd.notna(row['sentiment']):
-                    try:
-                        sentiment_val = float(row['sentiment'])
-                    except:
-                        sentiment_val = 0.0
+                if 'sentiment_score' in row and pd.notna(row['sentiment_score']):
+                    sentiment_val = float(row['sentiment_score'])
+                elif 'sentiment' in row and pd.notna(row['sentiment']):
+                    sentiment_val = float(row['sentiment']) / 10.0  # Normalize if GDELT tone
+                
+                # Get relevance score
+                relevance = 0.8
+                if 'trade_relevance' in row and pd.notna(row['trade_relevance']):
+                    relevance = float(row['trade_relevance'])
                 
                 country_code = None
                 if partner:
                     country_code = partner
-                elif pd.notna(row['country_2_iso3']) and row['country_2_iso3'] != 'IND':
+                elif pd.notna(row.get('country_2_iso3')) and row['country_2_iso3'] != 'IND':
                     country_code = str(row['country_2_iso3'])
-                elif pd.notna(row['country_1_iso3']) and row['country_1_iso3'] != 'IND':
+                elif pd.notna(row.get('country_1_iso3')) and row['country_1_iso3'] != 'IND':
                     country_code = str(row['country_1_iso3'])
                 
                 news_list.append(NewsArticle(
@@ -513,21 +823,20 @@ async def get_news(
                     source=domain,
                     url=str(row['url']),
                     date=str(row['date']),
-                    sentiment=sentiment_val,
-                    relevance_score=0.8,
+                    sentiment=sentiment_val,  # NOW SHOWING CALCULATED SENTIMENT
+                    relevance_score=relevance,
                     country_code=country_code
                 ))
             except Exception as e:
                 logger.error(f"Error processing article {idx}: {e}")
                 continue
         
-        logger.info(f"Returning {len(news_list)} articles")
+        logger.info(f"Returning {len(news_list)} articles with calculated sentiment")
         return news_list
         
     except Exception as e:
         logger.error(f"News error: {e}")
         return []
-
 
 @app.get("/api/explainability", response_model=Explainability, tags=["Frontend API"])
 async def get_explainability(

@@ -32,8 +32,8 @@ export function Sidebar() {
       </section>
 
       <section>
-        <h2 className="text-sm font-medium text-muted-foreground mb-2">Time</h2>
-        <MonthYearPicker value={month} onChange={(v) => setMonth(v)} />
+        {/* <h2 className="text-sm font-medium text-muted-foreground mb-2">Time</h2> */}
+        {/* <MonthYearPicker value={month} onChange={(v) => setMonth(v)} /> */}
       </section>
 
       <section className="pt-2">

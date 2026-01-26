@@ -15,7 +15,7 @@ from src.utils.helpers import (
     log1p_transform, normalize_sentiment, create_lag_features,
     create_rolling_features, save_dataframe, ensure_directory
 )
-from src.data.loaders import DataLoader
+from src.data.loaders_preprocessing import DataLoader
 
 logger = get_logger(__name__)
 settings = get_settings()
@@ -40,9 +40,129 @@ class DataPreprocessor:
         loader = DataLoader()
         return loader.load_all()
     
+    # def merge_trade_with_features(self, data: Dict[str, pd.DataFrame]) -> pd.DataFrame:
+    #     """
+    #     Merge trade data with all features.
+        
+    #     Args:
+    #         data: Dictionary of loaded dataframes
+        
+    #     Returns:
+    #         Merged dataframe with all features
+    #     """
+    #     logger.info("Step 2: Merging trade data with features...")
+        
+    #     trade = data['comtrade'].copy()
+        
+    #     # CRITICAL FIX: Check if Comtrade data is empty
+    #     if len(trade) == 0:
+    #         logger.error("❌ CRITICAL: Comtrade data is empty!")
+    #         logger.error("Possible causes:")
+    #         logger.error("  1. HS codes don't match Pharmaceuticals/Textiles")
+    #         logger.error("  2. Flow column filtering issue (check flowCode vs flowDesc)")
+    #         logger.error("  3. ISO3 mapping removed all countries")
+    #         logger.error("\nPlease check your raw Comtrade file:")
+    #         logger.error("  • What HS codes are present?")
+    #         logger.error("  • What values are in flowCode/flowDesc columns?")
+    #         logger.error("  • Are there valid country names/codes?")
+    #         raise ValueError("Comtrade data is empty after loading. Cannot proceed.")
+        
+    #     logger.info(f"Starting with {len(trade):,} trade records")
+        
+    #     # Add World Bank node features for SOURCE countries
+    #     logger.info("Merging source country features...")
+    #     wb = data['world_bank'].copy()
+    #     wb_source = wb.rename(columns={
+    #         'iso3': 'source_iso3',
+    #         'gdp_usd': 'source_gdp_usd',
+    #         'population': 'source_population',
+    #         'inflation_rate': 'source_inflation'
+    #     })
+        
+    #     trade = trade.merge(
+    #         wb_source[['source_iso3', 'year', 'source_gdp_usd', 'source_population', 'source_inflation']],
+    #         on=['source_iso3', 'year'],
+    #         how='left'
+    #     )
+        
+    #     # Add World Bank node features for TARGET countries
+    #     logger.info("Merging target country features...")
+    #     wb_target = wb.rename(columns={
+    #         'iso3': 'target_iso3',
+    #         'gdp_usd': 'target_gdp_usd',
+    #         'population': 'target_population',
+    #         'inflation_rate': 'target_inflation'
+    #     })
+        
+    #     trade = trade.merge(
+    #         wb_target[['target_iso3', 'year', 'target_gdp_usd', 'target_population', 'target_inflation']],
+    #         on=['target_iso3', 'year'],
+    #         how='left'
+    #     )
+        
+    #     logger.info(f"After World Bank merge: {len(trade):,} records")
+        
+    #     # Add CEPII distance features
+    #     logger.info("Merging CEPII distance features...")
+    #     cepii = data['cepii'].copy()
+    #     trade = trade.merge(
+    #         cepii,
+    #         on=['source_iso3', 'target_iso3'],
+    #         how='left'
+    #     )
+        
+    #     # Add RTA (FTA) binary flag
+    #     logger.info("Merging RTA (FTA) flags...")
+    #     rtas = data['rtas'].copy()
+    #     rtas['fta_binary'] = 1
+    #     trade = trade.merge(
+    #         rtas[['source_iso3', 'target_iso3', 'fta_binary']],
+    #         on=['source_iso3', 'target_iso3'],
+    #         how='left'
+    #     )
+    #     trade['fta_binary'] = trade['fta_binary'].fillna(0).astype(int)
+        
+    #     # Add GDELT sentiment
+    #     logger.info("Merging GDELT sentiment...")
+    #     gdelt = data['gdelt'].copy()
+        
+    #     if len(gdelt) == 0:
+    #         logger.warning("⚠️  No GDELT data available, setting sentiment to neutral (0)")
+    #         trade['avg_tone'] = 0.0
+    #         trade['sentiment_norm'] = 0.5  # Neutral
+    #     else:
+    #         # Match sentiment: try both (source->target) and (target->source)
+    #         gdelt_1 = gdelt.rename(columns={
+    #             'country_1_iso3': 'source_iso3',
+    #             'country_2_iso3': 'target_iso3'
+    #         })
+            
+    #         # Check if required columns exist
+    #         if all(col in gdelt_1.columns for col in ['source_iso3', 'target_iso3', 'avg_tone']):
+    #             trade = trade.merge(
+    #                 gdelt_1[['source_iso3', 'target_iso3', 'year', 'month', 'avg_tone']],
+    #                 on=['source_iso3', 'target_iso3', 'year', 'month'],
+    #                 how='left'
+    #             )
+    #         else:
+    #             logger.warning(f"⚠️  GDELT columns mismatch. Available: {list(gdelt_1.columns)}")
+    #             trade['avg_tone'] = 0.0
+            
+    #         # If no sentiment found, default to 0
+    #         trade['avg_tone'] = trade['avg_tone'].fillna(0)
+        
+    #     logger.info(f"After all merges: {len(trade):,} records")
+        
+    #     return trade
+    
+    """
+Updated preprocessing to use calculated bilateral sentiment
+ADD THIS TO src/data/preprocessing.py (replace merge_trade_with_features method)
+"""
+
     def merge_trade_with_features(self, data: Dict[str, pd.DataFrame]) -> pd.DataFrame:
         """
-        Merge trade data with all features.
+        Merge trade data with all features INCLUDING CALCULATED SENTIMENT.
         
         Args:
             data: Dictionary of loaded dataframes
@@ -54,17 +174,8 @@ class DataPreprocessor:
         
         trade = data['comtrade'].copy()
         
-        # CRITICAL FIX: Check if Comtrade data is empty
         if len(trade) == 0:
             logger.error("❌ CRITICAL: Comtrade data is empty!")
-            logger.error("Possible causes:")
-            logger.error("  1. HS codes don't match Pharmaceuticals/Textiles")
-            logger.error("  2. Flow column filtering issue (check flowCode vs flowDesc)")
-            logger.error("  3. ISO3 mapping removed all countries")
-            logger.error("\nPlease check your raw Comtrade file:")
-            logger.error("  • What HS codes are present?")
-            logger.error("  • What values are in flowCode/flowDesc columns?")
-            logger.error("  • Are there valid country names/codes?")
             raise ValueError("Comtrade data is empty after loading. Cannot proceed.")
         
         logger.info(f"Starting with {len(trade):,} trade records")
@@ -122,39 +233,99 @@ class DataPreprocessor:
         )
         trade['fta_binary'] = trade['fta_binary'].fillna(0).astype(int)
         
-        # Add GDELT sentiment
-        logger.info("Merging GDELT sentiment...")
-        gdelt = data['gdelt'].copy()
+        # ============================================================
+        # CRITICAL: Load CALCULATED bilateral sentiment
+        # ============================================================
+        logger.info("🎯 Loading CALCULATED bilateral sentiment...")
         
-        if len(gdelt) == 0:
-            logger.warning("⚠️  No GDELT data available, setting sentiment to neutral (0)")
-            trade['avg_tone'] = 0.0
-            trade['sentiment_norm'] = 0.5  # Neutral
-        else:
-            # Match sentiment: try both (source->target) and (target->source)
-            gdelt_1 = gdelt.rename(columns={
-                'country_1_iso3': 'source_iso3',
-                'country_2_iso3': 'target_iso3'
-            })
+        sentiment_path = settings.PROJECT_ROOT / settings.RAW_DATA_PATH / "sentiment" / "bilateral_sentiment.csv"
+        
+        if sentiment_path.exists():
+            bilateral_sentiment = pd.read_csv(sentiment_path)
+            logger.info(f"Loaded {len(bilateral_sentiment):,} bilateral sentiment scores")
             
-            # Check if required columns exist
-            if all(col in gdelt_1.columns for col in ['source_iso3', 'target_iso3', 'avg_tone']):
-                trade = trade.merge(
-                    gdelt_1[['source_iso3', 'target_iso3', 'year', 'month', 'avg_tone']],
-                    on=['source_iso3', 'target_iso3', 'year', 'month'],
-                    how='left'
+            # Merge sentiment (try both directions for country pairs)
+            # First try: exact match
+            trade = trade.merge(
+                bilateral_sentiment[[
+                    'country_1_iso3', 'country_2_iso3', 
+                    'sentiment_score', 'sentiment_positive', 'sentiment_negative',
+                    'confidence', 'article_count', 'trade_relevance'
+                ]].rename(columns={
+                    'country_1_iso3': 'source_iso3',
+                    'country_2_iso3': 'target_iso3'
+                }),
+                on=['source_iso3', 'target_iso3'],
+                how='left',
+                suffixes=('', '_calculated')
+            )
+            
+            # Second try: reversed pairs (bilateral is symmetric)
+            missing_sentiment = trade['sentiment_score'].isna()
+            if missing_sentiment.sum() > 0:
+                reverse_sentiment = bilateral_sentiment.rename(columns={
+                    'country_1_iso3': 'target_iso3',
+                    'country_2_iso3': 'source_iso3'
+                })
+                
+                trade_missing = trade[missing_sentiment].copy()
+                trade_missing = trade_missing.merge(
+                    reverse_sentiment[[
+                        'source_iso3', 'target_iso3',
+                        'sentiment_score', 'sentiment_positive', 'sentiment_negative',
+                        'confidence', 'article_count', 'trade_relevance'
+                    ]],
+                    on=['source_iso3', 'target_iso3'],
+                    how='left',
+                    suffixes=('', '_rev')
                 )
-            else:
-                logger.warning(f"⚠️  GDELT columns mismatch. Available: {list(gdelt_1.columns)}")
-                trade['avg_tone'] = 0.0
+                
+                # Fill in missing values
+                for col in ['sentiment_score', 'sentiment_positive', 'sentiment_negative', 
+                        'confidence', 'article_count', 'trade_relevance']:
+                    if col + '_rev' in trade_missing.columns:
+                        trade.loc[missing_sentiment, col] = trade_missing[col + '_rev'].values
             
-            # If no sentiment found, default to 0
-            trade['avg_tone'] = trade['avg_tone'].fillna(0)
+            # Check coverage
+            has_sentiment = trade['sentiment_score'].notna()
+            sentiment_coverage = has_sentiment.sum() / len(trade) * 100
+            logger.info(f"  ✓ Sentiment coverage: {sentiment_coverage:.1f}%")
+            logger.info(f"  ✓ Avg sentiment: {trade.loc[has_sentiment, 'sentiment_score'].mean():.3f}")
+            logger.info(f"  ✓ Avg confidence: {trade.loc[has_sentiment, 'confidence'].mean():.3f}")
+            
+            # Fill missing sentiment with neutral (0.0)
+            trade['sentiment_score'] = trade['sentiment_score'].fillna(0.0)
+            trade['sentiment_positive'] = trade['sentiment_positive'].fillna(0.33)
+            trade['sentiment_negative'] = trade['sentiment_negative'].fillna(0.33)
+            trade['confidence'] = trade['confidence'].fillna(0.0)
+            trade['article_count'] = trade['article_count'].fillna(0)
+            trade['trade_relevance'] = trade['trade_relevance'].fillna(0.0)
+            
+            # Normalize sentiment_score to [0, 1] range for model
+            trade['sentiment_norm'] = (trade['sentiment_score'] + 1.0) / 2.0  # -1 to 1 → 0 to 1
+            
+            # Also keep raw GDELT tone for comparison (optional)
+            if 'avg_tone' not in trade.columns:
+                trade['avg_tone'] = trade['sentiment_score'] * 10  # Scale back to GDELT range
+            
+        else:
+            logger.warning(f"⚠️  Calculated sentiment file not found: {sentiment_path}")
+            logger.warning("⚠️  Using neutral sentiment (0.0) for all pairs")
+            logger.warning("⚠️  Run: python src/pipelines/sentiment_analyzer.py first!")
+            
+            trade['sentiment_score'] = 0.0
+            trade['sentiment_positive'] = 0.33
+            trade['sentiment_negative'] = 0.33
+            trade['sentiment_norm'] = 0.5
+            trade['confidence'] = 0.0
+            trade['article_count'] = 0
+            trade['trade_relevance'] = 0.0
+            trade['avg_tone'] = 0.0
         
         logger.info(f"After all merges: {len(trade):,} records")
         
         return trade
-    
+        
     def engineer_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Create engineered features.
